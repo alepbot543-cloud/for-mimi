@@ -13,7 +13,7 @@
       padding: 0;
     }
     body {
-      background: linear-gradient(135deg, #1a0b2e 0%, #3b154c 50%, #6b114d 100%);
+      background: linear-gradient(135deg, #2b0938 0%, #591a4f 50%, #8a2387 100%);
       font-family: 'Poppins', sans-serif;
       min-height: 100vh;
       color: #fff;
@@ -21,19 +21,19 @@
       justify-content: center;
       align-items: center;
       overflow-x: hidden;
-      padding: 20px;
+      padding: 15px;
     }
 
     .container {
       width: 100%;
-      max-width: 480px;
-      background: rgba(255, 255, 255, 0.07);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(255, 255, 255, 0.18);
+      max-width: 450px;
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
       border-radius: 28px;
-      padding: 25px;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+      padding: 22px;
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
       text-align: center;
       position: relative;
       z-index: 10;
@@ -41,189 +41,162 @@
 
     .header-title {
       font-family: 'Sacramento', cursive;
-      font-size: 2.5rem;
-      background: linear-gradient(45deg, #ff758c, #ff7eb3);
+      font-size: 2.6rem;
+      background: linear-gradient(45deg, #ff9a9e, #fecfef);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      margin-bottom: 5px;
     }
 
     .sub-title {
-      font-size: 0.8rem;
-      letter-spacing: 1.5px;
+      font-size: 0.75rem;
+      letter-spacing: 2px;
       text-transform: uppercase;
       color: #ffd1d7;
       margin-bottom: 20px;
     }
 
-    /* Audio Player Custom */
+    /* Audio Bar */
     .audio-card {
-      background: rgba(0, 0, 0, 0.25);
+      background: rgba(0, 0, 0, 0.3);
       border-radius: 50px;
-      padding: 10px 18px;
+      padding: 8px 16px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 25px;
-      border: 1px solid rgba(255,255,255,0.1);
+      margin-bottom: 20px;
+      border: 1px solid rgba(255,255,255,0.15);
     }
-    .song-info {
-      text-align: left;
-      font-size: 0.8rem;
-    }
-    .song-title {
-      font-weight: 600;
-      color: #ff9a9e;
-    }
+    .song-info { text-align: left; font-size: 0.78rem; }
+    .song-title { font-weight: 600; color: #ff9a9e; }
     .play-btn {
-      background: #ff4757;
-      border: none;
-      color: white;
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      cursor: pointer;
-      font-size: 0.9rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: 0.3s;
+      background: #ff4757; border: none; color: white;
+      width: 34px; height: 34px; border-radius: 50%;
+      cursor: pointer; font-size: 0.85rem; transition: 0.3s;
     }
 
-    /* Section Styling */
-    .section {
-      display: none;
-      animation: fadeIn 0.6s ease-in-out forwards;
-    }
-    .section.active {
-      display: block;
-    }
-
+    /* Sections */
+    .section { display: none; animation: fadeIn 0.6s ease forwards; }
+    .section.active { display: block; }
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(15px); }
+      from { opacity: 0; transform: translateY(12px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Game Canvas Container */
-    .game-box {
-      position: relative;
-      background: #150826;
-      border-radius: 18px;
-      overflow: hidden;
-      border: 2px solid rgba(255, 71, 87, 0.4);
+    /* Nailong Interactive Box */
+    .nailong-box {
+      background: rgba(0,0,0,0.25);
+      border-radius: 20px;
+      padding: 15px;
       margin-bottom: 15px;
+      border: 2px dashed #ff758c;
+      position: relative;
     }
-    canvas {
-      display: block;
+    .nailong-img {
+      width: 100px;
+      height: 100px;
+      cursor: pointer;
+      transition: transform 0.1s ease;
+      user-select: none;
+    }
+    .nailong-img:active { transform: scale(0.85) rotate(-5deg); }
+
+    .progress-bar {
       width: 100%;
-      height: auto;
-    }
-    .controls {
-      display: flex;
-      justify-content: space-between;
-      gap: 10px;
+      height: 12px;
+      background: rgba(255,255,255,0.2);
+      border-radius: 10px;
+      overflow: hidden;
       margin-top: 10px;
     }
-    .ctrl-btn {
-      flex: 1;
-      padding: 12px;
-      background: rgba(255, 255, 255, 0.15);
-      border: none;
-      color: white;
-      font-size: 1.2rem;
-      border-radius: 12px;
-      cursor: pointer;
-      backdrop-filter: blur(5px);
-    }
-    .ctrl-btn:active {
-      background: #ff4757;
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #ff416c, #ff4b2b);
+      transition: width 0.2s ease;
     }
 
-    /* Message Styling */
-    .sweet-card {
+    /* Typewriter Message */
+    .typewriter-box {
       background: rgba(255, 255, 255, 0.95);
       color: #2d3436;
-      padding: 20px;
+      padding: 18px;
       border-radius: 20px;
-      font-size: 0.92rem;
+      font-size: 0.88rem;
       line-height: 1.7;
       text-align: left;
+      min-height: 180px;
       margin-bottom: 20px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-    }
-    .sender-tag {
-      text-align: right;
-      font-weight: 600;
-      color: #d63031;
-      font-size: 0.85rem;
-      margin-top: 15px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.25);
+      white-space: pre-line;
     }
 
-    /* Passcode Input */
-    .passcode-box {
-      margin: 20px 0;
+    /* Capybara Mascot */
+    .capybara-badge {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.15);
+      border-radius: 30px;
+      padding: 6px 14px;
+      font-size: 0.8rem;
+      margin-bottom: 15px;
     }
+
+    /* Passcode */
     .passcode-input {
-      width: 80%;
-      padding: 12px;
+      width: 75%;
+      padding: 10px;
       border-radius: 12px;
       border: 2px solid #ff758c;
-      background: rgba(0, 0, 0, 0.3);
+      background: rgba(0,0,0,0.4);
       color: white;
       font-size: 1.2rem;
       text-align: center;
-      letter-spacing: 5px;
+      letter-spacing: 4px;
       outline: none;
+      margin: 15px 0;
     }
 
-    /* Main Button */
     .action-btn {
       background: linear-gradient(45deg, #ff416c, #ff4b2b);
-      color: white;
-      border: none;
-      padding: 14px 28px;
-      font-size: 0.95rem;
-      font-weight: 600;
-      border-radius: 50px;
-      cursor: pointer;
-      box-shadow: 0 6px 20px rgba(255, 65, 108, 0.5);
-      transition: 0.3s;
-      width: 100%;
+      color: white; border: none;
+      padding: 12px 24px; font-size: 0.9rem;
+      font-weight: 600; border-radius: 50px;
+      cursor: pointer; box-shadow: 0 5px 18px rgba(255, 65, 108, 0.4);
+      width: 100%; transition: 0.3s;
     }
-    .action-btn:hover {
-      transform: scale(1.02);
-    }
+    .action-btn:disabled { opacity: 0.5; cursor: not-allowed; }
 
-    /* Photo Gallery Grid */
+    /* Photo Gallery */
     .gallery {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
+      gap: 10px;
       margin-top: 15px;
     }
     .gallery-item {
       width: 100%;
-      height: 140px;
-      border-radius: 14px;
+      height: 150px;
+      border-radius: 16px;
       overflow: hidden;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-      border: 2px solid rgba(255,255,255,0.2);
+      border: 2px solid rgba(255,255,255,0.3);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+    .gallery-item.full-width {
+      grid-column: span 2;
+      height: 230px;
     }
     .gallery-item img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: 0.4s;
-    }
-    .gallery-item img:hover {
-      transform: scale(1.1);
     }
 
-    /* Particle Hearts Falling */
-    .heart-particle {
+    /* Floating Animations */
+    .floating-emoji {
       position: fixed;
-      font-size: 18px;
-      top: -20px;
+      top: -30px;
       pointer-events: none;
       z-index: 1;
       animation: fall linear forwards;
@@ -233,70 +206,69 @@
     }
   </style>
 </head>
-<body>
+<body onclick="enableAudioOnTouch()">
 
-  <!-- Audio Player (Lagu Sabhi Saddi - Cinta Sesungguhnya) -->
-  <audio id="myAudio" loop preload="auto">
-    <source src="https://files.catbox.moe/k3i7l8.mp3" type="audio/mpeg">
+  <audio id="myAudio" loop preload="auto" crossorigin="anonymous">
+    <source src="https://stream.zeno.fm/f3fb44620182" type="audio/mpeg">
   </audio>
 
   <div class="container">
-    <div class="header-title">Special For My Love</div>
+    <div class="header-title">For My Special One</div>
     <div class="sub-title">Dato' Sri Aliff ❤️ Datin Sri Nursyamimi</div>
 
     <!-- Music Bar -->
     <div class="audio-card">
       <div class="song-info">
         <div class="song-title">Cinta Sesungguhnya</div>
-        <div style="font-size:0.7rem; color:#aaa;">Sabhi Saddi</div>
+        <div style="font-size:0.68rem; color:#ccc;">Romantic Song</div>
       </div>
-      <button class="play-btn" onclick="toggleAudio()" id="audioBtn">▶</button>
+      <button class="play-btn" onclick="toggleAudio(event)" id="audioBtn">▶</button>
     </div>
 
-    <!-- SECTION 1: GAME -->
-    <div id="sec-game" class="section active">
-      <p style="font-size: 0.85rem; margin-bottom: 12px; color: #ffccd5;">
-        🎮 Pandu bas ke destinasi tanpa langgar hantu/monster untuk jumpa mesej rahsia!
-      </p>
-      <div class="game-box">
-        <canvas id="gameCanvas" width="300" height="350"></canvas>
+    <!-- STEP 1: NAILONG TAP INTERACTION -->
+    <div id="step-nailong" class="section active">
+      <div class="capybara-badge">
+        <span>🦫 Capybara Senyum: "Tekan Nailong Dulu Sayang!"</span>
       </div>
-      <div class="controls">
-        <button class="ctrl-btn" onclick="moveBus(-20)">⬅️ Kiri</button>
-        <button class="ctrl-btn" onclick="moveBus(20)">Kanan ➡️</button>
-      </div>
-    </div>
-
-    <!-- SECTION 2: SWEET MESSAGE -->
-    <div id="sec-message" class="section">
-      <div class="sweet-card">
-        sayangg , i knoww kamuu penatt okeyy ? . dahh kalauu penatt , babyy alwayss adaa dengann sayangg okeyy . hugg mee okeyy manjaa 🫠❤️ , sayaa alwayss adaa dengann sayangg tauu . alwayss . sayangg carii jee babyy katt manaa manaa . babyy alwayss adaa . babyy alwayss adaa disisii sayangg inshaallahhh.. sayangg strongg gurll andd goodgurll okeyy 🥹❤️loveyouu somuchhh strongg gurll yangg bucukk babyy nursyamimii.. ..
-        <div class="sender-tag">
-          Daripada: Dato' Sri Muhammad Aliff Aiman 🤵🏻‍♂️✨
+      <div class="nailong-box">
+        <p style="font-size:0.8rem; margin-bottom:10px; color:#ffccd5;">
+          🐉 Tekan gambar Nailong comel ni 5 kali untuk kumpul <i>Love Power</i>!
+        </p>
+        <img src="https://api.iconify.design/fluent-emoji-flat:dragon.svg" class="nailong-img" id="nailongBtn" onclick="tapNailong()">
+        <div class="progress-bar">
+          <div class="progress-fill" id="loveProgress"></div>
         </div>
+        <p id="tapCountText" style="font-size:0.75rem; margin-top:8px; color:#ffd1d7;">0 / 5 Love Collected</p>
       </div>
-      <button class="action-btn" onclick="showSection('sec-passcode')">Buka Peti Hadiah 🎁</button>
+      <button class="action-btn" id="btnToMessage" disabled onclick="showSection('step-message'); startTypewriter();">
+        Seterusnya 🔒 (Kumpul Love Dulu)
+      </button>
     </div>
 
-    <!-- SECTION 3: PASSCODE -->
-    <div id="sec-passcode" class="section">
-      <h3 style="color:#ff758c; margin-bottom:10px;">Buka Peti Rahsia 🔐</h3>
-      <p style="font-size:0.85rem; color:#eee;">Masukkan 4-digit tarikh anniversary kita:</p>
-      <div class="passcode-box">
-        <input type="password" id="passInput" class="passcode-input" maxlength="4" placeholder="••••">
+    <!-- STEP 2: TYPEWRITER SWEET MESSAGE -->
+    <div id="step-message" class="section">
+      <div class="typewriter-box">
+        <span id="typewriterText"></span>
       </div>
+      <button class="action-btn" onclick="showSection('step-passcode')">Buka Peti Rahsia 🎁</button>
+    </div>
+
+    <!-- STEP 3: PASSCODE LOCK -->
+    <div id="step-passcode" class="section">
+      <h3 style="color:#ff758c; margin-bottom:8px;">Peti Kunci Rahsia 🔐</h3>
+      <p style="font-size:0.8rem; color:#eee;">Masukkan 4-digit tarikh anniversary kita:</p>
+      <input type="password" id="passInput" class="passcode-input" maxlength="4" placeholder="••••">
       <button class="action-btn" onclick="checkPasscode()">Buka Kunci ❤️</button>
     </div>
 
-    <!-- SECTION 4: GALLERY -->
-    <div id="sec-gallery" class="section">
-      <h3 style="color:#ff758c; margin-bottom:5px;">Kenangan Manis Kita 📸</h3>
-      <p style="font-size:0.8rem; color:#ffd1d7;">Datin Sri Nursyamimi & Dato' Sri Aliff</p>
-      
+    <!-- STEP 4: PHOTO GALLERY MEMORIES -->
+    <div id="step-gallery" class="section">
+      <h3 style="color:#ff758c; margin-bottom:4px;">Kenangan Indah Kita 📸</h3>
+      <p style="font-size:0.75rem; color:#ffd1d7; margin-bottom:12px;">Datin Sri Nursyamimi & Dato' Sri Aliff</p>
+
       <div class="gallery">
-        <!-- TUKAR LINK GAMBAR KORANG KAT SINI -->
-        <div class="gallery-item">
-          <img src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?q=80&w=400" alt="Memory 1">
+        <div class="gallery-item full-width">
+          <img src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?q=80&w=600" alt="Memory 1">
         </div>
         <div class="gallery-item">
           <img src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?q=80&w=400" alt="Memory 2">
@@ -307,157 +279,110 @@
         <div class="gallery-item">
           <img src="https://images.unsplash.com/photo-1518895949257-7621c3c786d7?q=80&w=400" alt="Memory 4">
         </div>
+        <div class="gallery-item full-width">
+          <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=600" alt="Memory 5">
+        </div>
       </div>
-      <p style="font-size: 0.85rem; margin-top: 20px; color: #ff9a9e;">I Love You So Much Datin Sri Nursyamimi! ❤️</p>
+
+      <div style="margin-top:20px; font-size:0.85rem; color:#ff9a9e;">
+        🦫 Capybara & 🐉 Nailong cakap: <br><b>"I Love You So Much Datin Sri Nursyamimi!" ❤️</b>
+      </div>
     </div>
 
   </div>
 
   <script>
-    // KOD ANNIVERSARY (1807):
     const CORRECT_PASS = "1807";
-
-    // Audio Controller
     const audio = document.getElementById('myAudio');
     const audioBtn = document.getElementById('audioBtn');
-    let isPlaying = false;
+    let audioStarted = false;
 
-    function toggleAudio() {
-      if (isPlaying) {
-        audio.pause();
-        audioBtn.innerText = "▶";
-      } else {
+    function enableAudioOnTouch() {
+      if (!audioStarted) {
         audio.play().then(() => {
           audioBtn.innerText = "⏸";
-          isPlaying = true;
-        }).catch(e => console.log("Audio autoplay prevented"));
+          audioStarted = true;
+        }).catch(() => {});
       }
-      if(isPlaying && audio.paused === false) {
-        isPlaying = false;
+    }
+
+    function toggleAudio(e) {
+      if (e) e.stopPropagation();
+      if (audio.paused) {
+        audio.play();
+        audioBtn.innerText = "⏸";
+        audioStarted = true;
+      } else {
+        audio.pause();
         audioBtn.innerText = "▶";
       }
     }
 
-    // Navigation Between Sections
+    /* Nailong Interaction */
+    let tapCount = 0;
+    function tapNailong() {
+      enableAudioOnTouch();
+      if (tapCount < 5) {
+        tapCount++;
+        let percent = (tapCount / 5) * 100;
+        document.getElementById('loveProgress').style.width = percent + '%';
+        document.getElementById('tapCountText').innerText = tapCount + " / 5 Love Collected ❤️";
+
+        confetti({ particleCount: 15, spread: 40, origin: { y: 0.6 } });
+
+        if (tapCount === 5) {
+          const btn = document.getElementById('btnToMessage');
+          btn.disabled = false;
+          btn.innerText = "Buka Mesej Rahsia ✨";
+          document.getElementById('tapCountText').innerText = "Sempurna! Tekan butang di bawah 🥰";
+        }
+      }
+    }
+
     function showSection(id) {
       document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
       document.getElementById(id).classList.add('active');
     }
 
-    // Passcode Logic
+    /* Typewriter Effect */
+    const fullText = "sayangg , i knoww kamuu penatt okeyy ? . dahh kalauu penatt , babyy alwayss adaa dengann sayangg okeyy . hugg mee okeyy manjaa 🫠❤️ , sayaa alwayss adaa dengann sayangg tauu . alwayss . sayangg carii jee babyy katt manaa manaa . babyy alwayss adaa . babyy alwayss adaa disisii sayangg inshaallahhh.. sayangg strongg gurll andd goodgurll okeyy 🥹❤️loveyouu somuchhh strongg gurll yangg bucukk babyy nursyamimii.. ..\n\nDaripada: Dato' Sri Muhammad Aliff Aiman 🤵🏻‍♂️✨";
+    
+    let typeIndex = 0;
+    function startTypewriter() {
+      if (typeIndex === 0) {
+        typeWriter();
+      }
+    }
+
+    function typeWriter() {
+      if (typeIndex < fullText.length) {
+        document.getElementById("typewriterText").innerText += fullText.charAt(typeIndex);
+        typeIndex++;
+        setTimeout(typeWriter, 35);
+      }
+    }
+
     function checkPasscode() {
       const input = document.getElementById('passInput').value;
       if (input === CORRECT_PASS) {
-        confetti({ particleCount: 120, spread: 70, origin: { y: 0.6 } });
-        showSection('sec-gallery');
+        confetti({ particleCount: 150, spread: 80, origin: { y: 0.5 } });
+        showSection('step-gallery');
       } else {
         alert("Kod salah sayang! Cuba ingat balik tarikh anniversary kita 😉❤️");
       }
     }
 
-    /* --- GAME LOGIC (Mini Bus Game) --- */
-    const canvas = document.getElementById('gameCanvas');
-    const ctx = canvas.getContext('2d');
-
-    let bus = { x: 130, y: 290, width: 40, height: 50, speed: 5 };
-    let obstacles = [];
-    let gameDistance = 0;
-    const maxDistance = 100;
-    let isGameOver = false;
-
-    function createObstacle() {
-      if (Math.random() < 0.04) {
-        let obsX = Math.random() * (canvas.width - 30);
-        obstacles.push({ x: obsX, y: -30, width: 30, height: 30, speed: 3 });
-      }
-    }
-
-    function moveBus(dir) {
-      bus.x += dir;
-      if (bus.x < 0) bus.x = 0;
-      if (bus.x > canvas.width - bus.width) bus.x = canvas.width - bus.width;
-      
-      // Auto-play lagu bila dia mula tekan butang main game
-      if(!isPlaying) {
-        audio.play();
-        audioBtn.innerText = "⏸";
-        isPlaying = true;
-      }
-    }
-
-    function updateGame() {
-      if (isGameOver) return;
-
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-      // Draw Road Lines
-      ctx.strokeStyle = "rgba(255,255,255,0.2)";
-      ctx.setLineDash([10, 10]);
-      ctx.beginPath();
-      ctx.moveTo(canvas.width/2, 0);
-      ctx.lineTo(canvas.width/2, canvas.height);
-      ctx.stroke();
-
-      // Draw Bus 🚌
-      ctx.font = "32px serif";
-      ctx.fillText("🚌", bus.x, bus.y + 30);
-
-      // Progress distance
-      gameDistance += 0.2;
-      
-      // Draw Progress Text
-      ctx.fillStyle = "#ff758c";
-      ctx.font = "12px Poppins";
-      ctx.fillText(`Destinasi: ${Math.min(100, Math.floor(gameDistance))}%`, 10, 20);
-
-      // Check Win Condition
-      if (gameDistance >= maxDistance) {
-        isGameOver = true;
-        confetti({ particleCount: 100, spread: 60 });
-        setTimeout(() => showSection('sec-message'), 600);
-        return;
-      }
-
-      // Handle Obstacles (Monsters 👾)
-      createObstacle();
-      for (let i = 0; i < obstacles.length; i++) {
-        let o = obstacles[i];
-        o.y += o.speed;
-        
-        // Draw Monster 👾
-        ctx.font = "24px serif";
-        ctx.fillText("👾", o.x, o.y + 20);
-
-        // Collision Check
-        if (
-          bus.x < o.x + o.width &&
-          bus.x + bus.width > o.x &&
-          bus.y < o.y + o.height &&
-          bus.y + bus.height > o.y
-        ) {
-          gameDistance = 0;
-          obstacles = [];
-          alert("Alamak terlanggar monster! Cuba lagi sayang 🚌💥");
-          break;
-        }
-      }
-
-      obstacles = obstacles.filter(o => o.y < canvas.height);
-      requestAnimationFrame(updateGame);
-    }
-
-    updateGame();
-
-    // Floating Hearts Background
+    /* Floating Nailong, Capybara & Hearts */
     setInterval(() => {
-      const heart = document.createElement('div');
-      heart.classList.add('heart-particle');
-      heart.innerText = ['❤️', '💖', '✨', '🌸'][Math.floor(Math.random()*4)];
-      heart.style.left = Math.random() * 100 + 'vw';
-      heart.style.animationDuration = Math.random() * 3 + 2 + 's';
-      document.body.appendChild(heart);
-      setTimeout(() => heart.remove(), 4000);
-    }, 600);
+      const emoji = document.createElement('div');
+      emoji.classList.add('floating-emoji');
+      emoji.innerText = ['🦫', '🐉', '❤️', '💖', '✨'][Math.floor(Math.random()*5)];
+      emoji.style.left = Math.random() * 90 + 'vw';
+      emoji.style.fontSize = (Math.random() * 12 + 18) + 'px';
+      emoji.style.animationDuration = Math.random() * 3 + 3 + 's';
+      document.body.appendChild(emoji);
+      setTimeout(() => emoji.remove(), 5000);
+    }, 700);
   </script>
 </body>
 </html>
