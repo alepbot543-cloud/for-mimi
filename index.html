@@ -618,30 +618,42 @@
       canvas.width = 300;
       canvas.height = 260;
 
+      // Batang Pokok
       ctx.fillStyle = '#8d6e63';
       ctx.fillRect(142, 140, 16, 100);
 
       let leafCount = 0;
       const colors = ['#ff4d6d', '#ff758f', '#ffb3c1', '#ffe66d'];
 
+      // Fungsi Lukis Heart Perfect Gunakan Bezier Curve
       function drawHeartLeaf(x, y, size, color) {
-        ctx.fillStyle = color;
+        ctx.save();
         ctx.beginPath();
-        ctx.arc(x - size/2, y, size/2, 0, Math.PI, true);
-        ctx.arc(x + size/2, y, size/2, 0, Math.PI, true);
-        ctx.lineTo(x, y + size);
+        ctx.translate(x, y);
+        ctx.fillStyle = color;
+        
+        let topCurveHeight = size * 0.3;
+        ctx.moveTo(0, topCurveHeight);
+        
+        // Lengkungan kiri & kanan heart
+        ctx.bezierCurveTo(0, 0, -size / 2, 0, -size / 2, topCurveHeight);
+        ctx.bezierCurveTo(-size / 2, (size + topCurveHeight) / 2, 0, size, 0, size);
+        ctx.bezierCurveTo(0, size, size / 2, (size + topCurveHeight) / 2, size / 2, topCurveHeight);
+        ctx.bezierCurveTo(size / 2, 0, 0, 0, 0, topCurveHeight);
+        
         ctx.closePath();
         ctx.fill();
+        ctx.restore();
       }
 
       const timer = setInterval(() => {
-        if (leafCount < 70) {
+        if (leafCount < 85) {
           let angle = Math.random() * Math.PI * 2;
           let r = Math.random() * 65;
           let x = 150 + r * Math.cos(angle);
-          let y = 100 + r * Math.sin(angle) * 0.8;
+          let y = 85 + r * Math.sin(angle) * 0.75;
           let color = colors[Math.floor(Math.random() * colors.length)];
-          drawHeartLeaf(x, y, 10 + Math.random()*8, color);
+          drawHeartLeaf(x, y, 12 + Math.random()*8, color);
           leafCount++;
         } else {
           clearInterval(timer);
@@ -649,7 +661,7 @@
           document.getElementById('btnToPhase2').style.display = 'block';
           startPreciseTimer();
         }
-      }, 30);
+      }, 25);
     }
 
     let totalSeconds = (436 * 86400) + (15 * 3600) + (22 * 60) + 47;
