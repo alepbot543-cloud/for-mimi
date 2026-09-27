@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Special For You ❤️</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Sacramento&display=swap" rel="stylesheet">
+  <title>Special For Datin Sri Nursyamimi ❤️</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Sacramento&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <style>
     * {
       box-sizing: border-box;
@@ -12,177 +13,451 @@
       padding: 0;
     }
     body {
-      background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #feada6 100%);
+      background: linear-gradient(135deg, #1a0b2e 0%, #3b154c 50%, #6b114d 100%);
       font-family: 'Poppins', sans-serif;
       min-height: 100vh;
+      color: #fff;
       display: flex;
       justify-content: center;
       align-items: center;
       overflow-x: hidden;
-      color: #4a4a4a;
-      text-align: center;
       padding: 20px;
     }
-    .card {
-      background: rgba(255, 255, 255, 0.85);
-      backdrop-filter: blur(10px);
-      border-radius: 24px;
-      padding: 30px 20px;
-      max-width: 400px;
+
+    .container {
       width: 100%;
-      box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-      animation: float 4s ease-in-out infinite;
+      max-width: 480px;
+      background: rgba(255, 255, 255, 0.07);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 28px;
+      padding: 25px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+      text-align: center;
       position: relative;
       z-index: 10;
     }
-    @keyframes float {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-8px); }
-    }
-    h1 {
+
+    .header-title {
       font-family: 'Sacramento', cursive;
-      font-size: 2.8rem;
-      color: #ff4b2b;
-      margin-bottom: 10px;
+      font-size: 2.5rem;
+      background: linear-gradient(45deg, #ff758c, #ff7eb3);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 5px;
     }
-    p {
-      font-size: 0.95rem;
-      line-height: 1.6;
-      color: #555;
+
+    .sub-title {
+      font-size: 0.8rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #ffd1d7;
       margin-bottom: 20px;
     }
-    .img-container {
-      width: 100%;
-      height: 220px;
-      border-radius: 16px;
-      overflow: hidden;
-      margin-bottom: 20px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-    }
-    .img-container img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.5s ease;
-    }
-    .img-container img:hover {
-      transform: scale(1.05);
-    }
-    .btn-group {
+
+    /* Audio Player Custom */
+    .audio-card {
+      background: rgba(0, 0, 0, 0.25);
+      border-radius: 50px;
+      padding: 10px 18px;
       display: flex;
-      gap: 12px;
-      justify-content: center;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 25px;
+      border: 1px solid rgba(255,255,255,0.1);
     }
-    button {
+    .song-info {
+      text-align: left;
+      font-size: 0.8rem;
+    }
+    .song-title {
+      font-weight: 600;
+      color: #ff9a9e;
+    }
+    .play-btn {
+      background: #ff4757;
+      border: none;
+      color: white;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: 0.3s;
+    }
+
+    /* Section Styling */
+    .section {
+      display: none;
+      animation: fadeIn 0.6s ease-in-out forwards;
+    }
+    .section.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(15px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Game Canvas Container */
+    .game-box {
+      position: relative;
+      background: #150826;
+      border-radius: 18px;
+      overflow: hidden;
+      border: 2px solid rgba(255, 71, 87, 0.4);
+      margin-bottom: 15px;
+    }
+    canvas {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+    .controls {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .ctrl-btn {
+      flex: 1;
+      padding: 12px;
+      background: rgba(255, 255, 255, 0.15);
+      border: none;
+      color: white;
+      font-size: 1.2rem;
+      border-radius: 12px;
+      cursor: pointer;
+      backdrop-filter: blur(5px);
+    }
+    .ctrl-btn:active {
+      background: #ff4757;
+    }
+
+    /* Message Styling */
+    .sweet-card {
+      background: rgba(255, 255, 255, 0.95);
+      color: #2d3436;
+      padding: 20px;
+      border-radius: 20px;
+      font-size: 0.92rem;
+      line-height: 1.7;
+      text-align: left;
+      margin-bottom: 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+    .sender-tag {
+      text-align: right;
+      font-weight: 600;
+      color: #d63031;
+      font-size: 0.85rem;
+      margin-top: 15px;
+    }
+
+    /* Passcode Input */
+    .passcode-box {
+      margin: 20px 0;
+    }
+    .passcode-input {
+      width: 80%;
+      padding: 12px;
+      border-radius: 12px;
+      border: 2px solid #ff758c;
+      background: rgba(0, 0, 0, 0.3);
+      color: white;
+      font-size: 1.2rem;
+      text-align: center;
+      letter-spacing: 5px;
+      outline: none;
+    }
+
+    /* Main Button */
+    .action-btn {
       background: linear-gradient(45deg, #ff416c, #ff4b2b);
       color: white;
       border: none;
-      padding: 12px 24px;
-      font-size: 0.9rem;
+      padding: 14px 28px;
+      font-size: 0.95rem;
       font-weight: 600;
       border-radius: 50px;
       cursor: pointer;
-      box-shadow: 0 5px 15px rgba(255, 65, 108, 0.4);
-      transition: all 0.3s ease;
+      box-shadow: 0 6px 20px rgba(255, 65, 108, 0.5);
+      transition: 0.3s;
+      width: 100%;
     }
-    button:hover {
-      transform: scale(1.05);
-      box-shadow: 0 8px 20px rgba(255, 65, 108, 0.6);
+    .action-btn:hover {
+      transform: scale(1.02);
     }
-    button:active {
-      transform: scale(0.98);
+
+    /* Photo Gallery Grid */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-top: 15px;
     }
-    /* Heart particle effect */
-    .heart {
+    .gallery-item {
+      width: 100%;
+      height: 140px;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      border: 2px solid rgba(255,255,255,0.2);
+    }
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: 0.4s;
+    }
+    .gallery-item img:hover {
+      transform: scale(1.1);
+    }
+
+    /* Particle Hearts Falling */
+    .heart-particle {
       position: fixed;
-      font-size: 20px;
+      font-size: 18px;
       top: -20px;
-      user-select: none;
       pointer-events: none;
-      animation: fall linear forwards;
       z-index: 1;
+      animation: fall linear forwards;
     }
     @keyframes fall {
-      to {
-        transform: translateY(105vh) rotate(360deg);
-      }
+      to { transform: translateY(105vh) rotate(360deg); }
     }
   </style>
 </head>
 <body>
 
-  <div class="card">
-    <h1 id="title">Hey Pretty Girl ❤️</h1>
-    <div class="img-container">
-      <!-- Tukar gambar korang kat sini -->
-      <img id="main-img" src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?q=80&w=500" alt="Sweet Moment">
+  <!-- Audio Player (Lagu Sabhi Saddi - Cinta Sesungguhnya) -->
+  <audio id="myAudio" loop preload="auto">
+    <source src="https://files.catbox.moe/k3i7l8.mp3" type="audio/mpeg">
+  </audio>
+
+  <div class="container">
+    <div class="header-title">Special For My Love</div>
+    <div class="sub-title">Dato' Sri Aliff ❤️ Datin Sri Nursyamimi</div>
+
+    <!-- Music Bar -->
+    <div class="audio-card">
+      <div class="song-info">
+        <div class="song-title">Cinta Sesungguhnya</div>
+        <div style="font-size:0.7rem; color:#aaa;">Sabhi Saddi</div>
+      </div>
+      <button class="play-btn" onclick="toggleAudio()" id="audioBtn">▶</button>
     </div>
-    <p id="text">Terima kasih sebab sentiasa ada dengan aku. Life aku jadi jauh lebih bermakna dan manis bila ada kau. Don't forget to smile today! ✨</p>
-    
-    <div class="btn-group">
-      <button onclick="nextMessage()">Tekan Sini 💌</button>
+
+    <!-- SECTION 1: GAME -->
+    <div id="sec-game" class="section active">
+      <p style="font-size: 0.85rem; margin-bottom: 12px; color: #ffccd5;">
+        🎮 Pandu bas ke destinasi tanpa langgar hantu/monster untuk jumpa mesej rahsia!
+      </p>
+      <div class="game-box">
+        <canvas id="gameCanvas" width="300" height="350"></canvas>
+      </div>
+      <div class="controls">
+        <button class="ctrl-btn" onclick="moveBus(-20)">⬅️ Kiri</button>
+        <button class="ctrl-btn" onclick="moveBus(20)">Kanan ➡️</button>
+      </div>
     </div>
+
+    <!-- SECTION 2: SWEET MESSAGE -->
+    <div id="sec-message" class="section">
+      <div class="sweet-card">
+        sayangg , i knoww kamuu penatt okeyy ? . dahh kalauu penatt , babyy alwayss adaa dengann sayangg okeyy . hugg mee okeyy manjaa 🫠❤️ , sayaa alwayss adaa dengann sayangg tauu . alwayss . sayangg carii jee babyy katt manaa manaa . babyy alwayss adaa . babyy alwayss adaa disisii sayangg inshaallahhh.. sayangg strongg gurll andd goodgurll okeyy 🥹❤️loveyouu somuchhh strongg gurll yangg bucukk babyy nursyamimii.. ..
+        <div class="sender-tag">
+          Daripada: Dato' Sri Muhammad Aliff Aiman 🤵🏻‍♂️✨
+        </div>
+      </div>
+      <button class="action-btn" onclick="showSection('sec-passcode')">Buka Peti Hadiah 🎁</button>
+    </div>
+
+    <!-- SECTION 3: PASSCODE -->
+    <div id="sec-passcode" class="section">
+      <h3 style="color:#ff758c; margin-bottom:10px;">Buka Peti Rahsia 🔐</h3>
+      <p style="font-size:0.85rem; color:#eee;">Masukkan 4-digit tarikh anniversary kita:</p>
+      <div class="passcode-box">
+        <input type="password" id="passInput" class="passcode-input" maxlength="4" placeholder="••••">
+      </div>
+      <button class="action-btn" onclick="checkPasscode()">Buka Kunci ❤️</button>
+    </div>
+
+    <!-- SECTION 4: GALLERY -->
+    <div id="sec-gallery" class="section">
+      <h3 style="color:#ff758c; margin-bottom:5px;">Kenangan Manis Kita 📸</h3>
+      <p style="font-size:0.8rem; color:#ffd1d7;">Datin Sri Nursyamimi & Dato' Sri Aliff</p>
+      
+      <div class="gallery">
+        <!-- TUKAR LINK GAMBAR KORANG KAT SINI -->
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?q=80&w=400" alt="Memory 1">
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?q=80&w=400" alt="Memory 2">
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?q=80&w=400" alt="Memory 3">
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1518895949257-7621c3c786d7?q=80&w=400" alt="Memory 4">
+        </div>
+      </div>
+      <p style="font-size: 0.85rem; margin-top: 20px; color: #ff9a9e;">I Love You So Much Datin Sri Nursyamimi! ❤️</p>
+    </div>
+
   </div>
 
   <script>
-    const data = [
-      {
-        title: "Kenyataan Hari Ini 🌹",
-        text: "Kau tahu tak? Dalam ramai-ramai orang, kau sorang je yang boleh buat aku senyum sorang-sorang bila teringat kat kau.",
-        img: "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?q=80&w=500"
-      },
-      {
-        title: "Janji Aku ✨",
-        text: "Aku mungkin tak sempurna, tapi aku janji akan sentiasa cuba yang terbaik untuk jaga dan hargai kau.",
-        img: "https://images.unsplash.com/photo-1522673607200-164d1b6ce486?q=80&w=500"
-      },
-      {
-        title: "I Love You! ❤️",
-        text: "Mimi, stay cute, stay sweet, and stay with me okay? Love you so much!",
-        img: "https://images.unsplash.com/photo-1518895949257-7621c3c786d7?q=80&w=500"
+    // KOD ANNIVERSARY (1807):
+    const CORRECT_PASS = "1807";
+
+    // Audio Controller
+    const audio = document.getElementById('myAudio');
+    const audioBtn = document.getElementById('audioBtn');
+    let isPlaying = false;
+
+    function toggleAudio() {
+      if (isPlaying) {
+        audio.pause();
+        audioBtn.innerText = "▶";
+      } else {
+        audio.play().then(() => {
+          audioBtn.innerText = "⏸";
+          isPlaying = true;
+        }).catch(e => console.log("Audio autoplay prevented"));
       }
-    ];
+      if(isPlaying && audio.paused === false) {
+        isPlaying = false;
+        audioBtn.innerText = "▶";
+      }
+    }
 
-    let index = 0;
+    // Navigation Between Sections
+    function showSection(id) {
+      document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+    }
 
-    function nextMessage() {
-      index = (index + 1) % data.length;
+    // Passcode Logic
+    function checkPasscode() {
+      const input = document.getElementById('passInput').value;
+      if (input === CORRECT_PASS) {
+        confetti({ particleCount: 120, spread: 70, origin: { y: 0.6 } });
+        showSection('sec-gallery');
+      } else {
+        alert("Kod salah sayang! Cuba ingat balik tarikh anniversary kita 😉❤️");
+      }
+    }
+
+    /* --- GAME LOGIC (Mini Bus Game) --- */
+    const canvas = document.getElementById('gameCanvas');
+    const ctx = canvas.getContext('2d');
+
+    let bus = { x: 130, y: 290, width: 40, height: 50, speed: 5 };
+    let obstacles = [];
+    let gameDistance = 0;
+    const maxDistance = 100;
+    let isGameOver = false;
+
+    function createObstacle() {
+      if (Math.random() < 0.04) {
+        let obsX = Math.random() * (canvas.width - 30);
+        obstacles.push({ x: obsX, y: -30, width: 30, height: 30, speed: 3 });
+      }
+    }
+
+    function moveBus(dir) {
+      bus.x += dir;
+      if (bus.x < 0) bus.x = 0;
+      if (bus.x > canvas.width - bus.width) bus.x = canvas.width - bus.width;
       
-      const card = document.querySelector('.card');
-      card.style.opacity = '0';
-      card.style.transform = 'translateY(10px)';
+      // Auto-play lagu bila dia mula tekan butang main game
+      if(!isPlaying) {
+        audio.play();
+        audioBtn.innerText = "⏸";
+        isPlaying = true;
+      }
+    }
+
+    function updateGame() {
+      if (isGameOver) return;
+
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Draw Road Lines
+      ctx.strokeStyle = "rgba(255,255,255,0.2)";
+      ctx.setLineDash([10, 10]);
+      ctx.beginPath();
+      ctx.moveTo(canvas.width/2, 0);
+      ctx.lineTo(canvas.width/2, canvas.height);
+      ctx.stroke();
+
+      // Draw Bus 🚌
+      ctx.font = "32px serif";
+      ctx.fillText("🚌", bus.x, bus.y + 30);
+
+      // Progress distance
+      gameDistance += 0.2;
       
-      setTimeout(() => {
-        document.getElementById('title').innerText = data[index].title;
-        document.getElementById('text').innerText = data[index].text;
-        document.getElementById('main-img').src = data[index].img;
+      // Draw Progress Text
+      ctx.fillStyle = "#ff758c";
+      ctx.font = "12px Poppins";
+      ctx.fillText(`Destinasi: ${Math.min(100, Math.floor(gameDistance))}%`, 10, 20);
+
+      // Check Win Condition
+      if (gameDistance >= maxDistance) {
+        isGameOver = true;
+        confetti({ particleCount: 100, spread: 60 });
+        setTimeout(() => showSection('sec-message'), 600);
+        return;
+      }
+
+      // Handle Obstacles (Monsters 👾)
+      createObstacle();
+      for (let i = 0; i < obstacles.length; i++) {
+        let o = obstacles[i];
+        o.y += o.speed;
         
-        card.style.transition = 'all 0.5s ease';
-        card.style.opacity = '1';
-        card.style.transform = 'translateY(0)';
-      }, 300);
+        // Draw Monster 👾
+        ctx.font = "24px serif";
+        ctx.fillText("👾", o.x, o.y + 20);
 
-      createFloatingHearts(5);
-    }
-
-    function createFloatingHearts(count) {
-      const hearts = ['❤️', '💖', '🌸', '✨', '💕'];
-      for(let i = 0; i < count; i++) {
-        const heart = document.createElement('div');
-        heart.classList.add('heart');
-        heart.innerText = hearts[Math.floor(Math.random() * hearts.length)];
-        heart.style.left = Math.random() * 100 + 'vw';
-        heart.style.animationDuration = Math.random() * 3 + 2 + 's';
-        heart.style.fontSize = Math.random() * 15 + 15 + 'px';
-        document.body.appendChild(heart);
-
-        setTimeout(() => {
-          heart.remove();
-        }, 5000);
+        // Collision Check
+        if (
+          bus.x < o.x + o.width &&
+          bus.x + bus.width > o.x &&
+          bus.y < o.y + o.height &&
+          bus.y + bus.height > o.y
+        ) {
+          gameDistance = 0;
+          obstacles = [];
+          alert("Alamak terlanggar monster! Cuba lagi sayang 🚌💥");
+          break;
+        }
       }
+
+      obstacles = obstacles.filter(o => o.y < canvas.height);
+      requestAnimationFrame(updateGame);
     }
 
-    setInterval(() => createFloatingHearts(1), 800);
+    updateGame();
+
+    // Floating Hearts Background
+    setInterval(() => {
+      const heart = document.createElement('div');
+      heart.classList.add('heart-particle');
+      heart.innerText = ['❤️', '💖', '✨', '🌸'][Math.floor(Math.random()*4)];
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = Math.random() * 3 + 2 + 's';
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 4000);
+    }, 600);
   </script>
 </body>
 </html>
