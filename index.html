@@ -94,6 +94,40 @@
       transform: translateY(0) scale(1);
     }
 
+    /* FASA 0: BAS GAME */
+    .bus-track {
+      width: 100%;
+      height: 140px;
+      background: rgba(0,0,0,0.3);
+      border-radius: 20px;
+      position: relative;
+      margin: 20px 0;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.15);
+    }
+    .bus-road {
+      position: absolute;
+      bottom: 15px;
+      width: 100%;
+      height: 6px;
+      background: dashed #ff758f;
+      border-bottom: 2px dashed rgba(255,255,255,0.5);
+    }
+    .bus-icon {
+      position: absolute;
+      bottom: 22px;
+      left: 10px;
+      font-size: 3rem;
+      transition: left 0.3s ease-out;
+      filter: drop-shadow(0 5px 10px rgba(0,0,0,0.5));
+    }
+    .destination-icon {
+      position: absolute;
+      bottom: 22px;
+      right: 15px;
+      font-size: 2.5rem;
+    }
+
     /* FASA 1 */
     .tree-canvas-container {
       position: relative;
@@ -188,7 +222,7 @@
       gap: 10px;
     }
 
-    /* FASA 3: GALAXY HEART CSS ANIMATION */
+    /* FASA 3: GALAXY HEART & BOOM */
     .galaxy-box {
       width: 100%;
       height: 290px;
@@ -231,6 +265,17 @@
     @keyframes floatGHeart {
       0% { transform: scale(1) translateY(0); }
       100% { transform: scale(1.1) translateY(-10px); }
+    }
+
+    .earth-icon {
+      position: absolute;
+      bottom: -15px;
+      font-size: 3rem;
+      animation: pulseEarth 3s infinite ease-in-out;
+    }
+    @keyframes pulseEarth {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.15); }
     }
 
     .stars-bg {
@@ -415,8 +460,24 @@
       <button class="play-btn" id="musicToggleBtn" onclick="toggleMusic(event)">▶ Play</button>
     </div>
 
+    <!-- FASA 0: PERMAINAN BAS -->
+    <div id="phase0" class="phase active">
+      <h2 style="font-family: 'Sacramento', cursive; font-size: 2.5rem; color: #ff9a9e;">Trip Ke Hati Syamimi</h2>
+      <p style="font-size: 0.72rem; color: #ffd1d7;">Tekan butang untuk jalankan bas cinta! 🚌💨</p>
+
+      <div class="bus-track">
+        <div class="bus-road"></div>
+        <div class="bus-icon" id="busEmoji">🚌</div>
+        <div class="destination-icon">🏰❤️</div>
+      </div>
+
+      <button class="action-btn-main" onclick="moveBus()">
+        Jalan Bas! 🚌 (Tekan 5x)
+      </button>
+    </div>
+
     <!-- FASA 1 -->
-    <div id="phase1" class="phase active">
+    <div id="phase1" class="phase">
       <h2 style="font-family: 'Sacramento', cursive; font-size: 2.4rem; color: #ff9a9e;">Gift For Her</h2>
       <p style="font-size: 0.72rem; color: #ffd1d7; margin-bottom: 12px;">Dato' Sri Aliff ❤️ Datin Sri Nursyamimi</p>
 
@@ -471,10 +532,11 @@
       <div class="galaxy-box">
         <div class="stars-bg"></div>
         <div class="g-heart"></div>
+        <div class="earth-icon">🌍</div>
       </div>
 
-      <button class="action-btn-main" onclick="goToPhase('phase4')">
-        Buka Peti Kunci Passcode 🔐
+      <button class="action-btn-main" onclick="boomToGalaxy()">
+        BOOM! Meluncur ke Peti Kunci 🚀💥
       </button>
     </div>
 
@@ -608,6 +670,22 @@
       }
     }
 
+    /* FASA 0: BAS GAME LOGIC */
+    let busStep = 0;
+    function moveBus() {
+      const bus = document.getElementById('busEmoji');
+      busStep++;
+      const pos = 10 + (busStep * 55);
+      bus.style.left = pos + 'px';
+
+      if(busStep >= 5) {
+        setTimeout(() => {
+          confetti({ particleCount: 80, spread: 60 });
+          goToPhase('phase1');
+        }, 400);
+      }
+    }
+
     /* FASA 1 */
     function growTree() {
       document.getElementById('startTreeBtn').style.display = 'none';
@@ -625,7 +703,6 @@
       let leafCount = 0;
       const colors = ['#ff4d6d', '#ff758f', '#ffb3c1', '#ffe66d'];
 
-      // Fungsi Lukis Heart Perfect Gunakan Bezier Curve
       function drawHeartLeaf(x, y, size, color) {
         ctx.save();
         ctx.beginPath();
@@ -634,13 +711,10 @@
         
         let topCurveHeight = size * 0.3;
         ctx.moveTo(0, topCurveHeight);
-        
-        // Lengkungan kiri & kanan heart
         ctx.bezierCurveTo(0, 0, -size / 2, 0, -size / 2, topCurveHeight);
         ctx.bezierCurveTo(-size / 2, (size + topCurveHeight) / 2, 0, size, 0, size);
         ctx.bezierCurveTo(0, size, size / 2, (size + topCurveHeight) / 2, size / 2, topCurveHeight);
         ctx.bezierCurveTo(size / 2, 0, 0, 0, 0, topCurveHeight);
-        
         ctx.closePath();
         ctx.fill();
         ctx.restore();
@@ -679,6 +753,29 @@
         document.getElementById('tMins').innerText = m;
         document.getElementById('tSecs').innerText = s;
       }, 1000);
+    }
+
+    /* FASA 3: BOOM ANIMATION */
+    function boomToGalaxy() {
+      // Impak Letupan Boom dari Bumi ke Angkasa
+      var count = 200;
+      var defaults = { origin: { y: 0.8 } };
+
+      function fire(particleRatio, opts) {
+        confetti(Object.assign({}, defaults, opts, {
+          particleCount: Math.floor(count * particleRatio)
+        }));
+      }
+
+      fire(0.25, { spread: 26, startVelocity: 55 });
+      fire(0.2, { spread: 60 });
+      fire(0.35, { spread: 100, decay: 0.91, scalar: 0.8 });
+      fire(0.1, { spread: 120, startVelocity: 25, decay: 0.92, scalar: 1.2 });
+      fire(0.1, { spread: 120, startVelocity: 45 });
+
+      setTimeout(() => {
+        goToPhase('phase4');
+      }, 700);
     }
 
     /* FASA 4 */
@@ -751,11 +848,13 @@
       passInput = "";
       updateDots();
       nailongCount = 0;
+      busStep = 0;
+      document.getElementById('busEmoji').style.left = '10px';
       document.getElementById('quizSub').style.display = 'block';
       document.getElementById('nailongSub').style.display = 'none';
       document.getElementById('btnToGallery').style.display = 'none';
       document.getElementById('nailongTxt').innerText = "0 / 5 Collected";
-      goToPhase('phase1');
+      goToPhase('phase0');
     }
 
     setInterval(() => {
