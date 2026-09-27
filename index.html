@@ -27,7 +27,7 @@
     .container {
       width: 100%;
       max-width: 400px;
-      background: rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.12);
       backdrop-filter: blur(18px);
       -webkit-backdrop-filter: blur(18px);
       border: 1px solid rgba(255, 255, 255, 0.25);
@@ -56,30 +56,29 @@
       font-weight: 600;
     }
 
-    /* Music Bar */
+    /* Music Player Bar */
     .audio-card {
-      background: rgba(0, 0, 0, 0.35);
+      background: rgba(0, 0, 0, 0.45);
       border-radius: 50px;
-      padding: 8px 16px;
+      padding: 10px 16px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       margin-bottom: 20px;
-      border: 1px solid rgba(255,255,255,0.2);
+      border: 1px solid rgba(255,255,255,0.3);
     }
     .song-info { text-align: left; overflow: hidden; margin-right: 8px; }
-    .song-title { font-weight: 600; color: #ff9a9e; font-size: 0.82rem; }
-    .song-artist { font-size: 0.68rem; color: #ddd; }
+    .song-title { font-weight: 600; color: #ff9a9e; font-size: 0.85rem; }
+    .song-artist { font-size: 0.68rem; color: #eee; }
     .play-btn {
       background: linear-gradient(45deg, #ff416c, #ff4b2b);
       border: none; color: white;
-      padding: 6px 14px; border-radius: 20px;
-      cursor: pointer; font-size: 0.78rem; font-weight: 600;
+      padding: 8px 16px; border-radius: 20px;
+      cursor: pointer; font-size: 0.8rem; font-weight: 600;
       white-space: nowrap;
-      box-shadow: 0 4px 10px rgba(255, 65, 108, 0.4);
+      box-shadow: 0 4px 12px rgba(255, 65, 108, 0.5);
     }
 
-    /* Sections */
     .section { display: none; animation: fadeIn 0.5s ease forwards; }
     .section.active { display: block; }
     @keyframes fadeIn {
@@ -141,22 +140,18 @@
       transition: width 0.2s ease;
     }
 
-    /* Typewriter Box - DIBAIKI SEPENUHNYA */
-    .typewriter-box {
+    /* Mesej teks dengan spacing berjarak */
+    .message-box {
       background: #ffffff;
       color: #2d3436;
-      padding: 18px 16px;
+      padding: 20px 18px;
       border-radius: 20px;
-      font-size: 0.88rem;
-      line-height: 1.75;
+      font-size: 0.9rem;
+      line-height: 1.8;
       text-align: left;
-      min-height: 180px;
       margin-bottom: 20px;
       box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-      
-      word-wrap: break-word !important;
-      overflow-wrap: break-word !important;
-      white-space: pre-wrap !important;
+      word-break: break-word;
     }
 
     .passcode-input {
@@ -222,17 +217,16 @@
 </head>
 <body onclick="playAudioDirect()">
 
-  <!-- Audio Stream Direct Universal -->
-  <audio id="myAudio" loop preload="auto" crossorigin="anonymous">
-    <source src="https://stream.zeno.fm/f3fb44620182" type="audio/mpeg">
-    <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=romantic-love-112199.mp3" type="audio/mpeg">
+  <!-- Audio Menggunakan Fail lagu.mp3 Dalam Repo -->
+  <audio id="myAudio" loop preload="auto">
+    <source src="lagu.mp3" type="audio/mpeg">
   </audio>
 
   <div class="container">
     <div class="header-title">For My Special One</div>
     <div class="sub-title">Dato' Sri Aliff ❤️ Datin Sri Nursyamimi</div>
 
-    <!-- Music Player -->
+    <!-- Music Player Bar -->
     <div class="audio-card">
       <div class="song-info">
         <div class="song-title">Cinta Sesungguhnya ❤️</div>
@@ -241,7 +235,7 @@
       <button class="play-btn" onclick="toggleAudio(event)" id="audioBtn">▶ Play Lagu</button>
     </div>
 
-    <!-- STEP 1: NAILONG & CAPYBARA -->
+    <!-- STEP 1: NAILONG & CAPYBARA GAME -->
     <div id="step-nailong" class="section active">
       <div class="mascot-badge">
         <span>🦫 Capybara & 🟡 Nailong Kuning Comel!</span>
@@ -260,19 +254,24 @@
         </div>
         <p id="tapCountText" style="font-size:0.75rem; margin-top:8px; color:#ffd1d7;">0 / 5 Love Collected</p>
       </div>
-      <button class="action-btn" id="btnToMessage" disabled onclick="showSection('step-message'); startTypewriter();">
+      <button class="action-btn" id="btnToMessage" disabled onclick="showSection('step-message')">
         Seterusnya 🔒 (Kumpul Love Dulu)
       </button>
     </div>
 
-    <!-- STEP 2: TYPEWRITER SWEET MESSAGE -->
+    <!-- STEP 2: SWEET MESSAGE WITH PERFECT SPACING -->
     <div id="step-message" class="section">
       <div class="mascot-badge">
         <span>🦫 Capybara Pegang Mesej Rahsia ❤️</span>
       </div>
-      <div class="typewriter-box">
-        <span id="typewriterText"></span>
+      
+      <div class="message-box">
+        Sayang , I know kamu penat okey ? Dah kalau penat , baby always ada dengan sayang okey . <br><br>
+        Hug me okey manja 🫠❤️ , saya always ada dengan sayang tau . Always . Sayang cari jee baby kat mana mana , baby always ada . Baby always ada disisi sayang inshaAllah .. <br><br>
+        Sayang strong gurl and good gurl okey 🥹❤️ love you so much strong gurl yang bucuk baby Nursyamimi .. <br><br>
+        <b>Daripada: Dato' Sri Muhammad Aliff Aiman 🤵🏻‍♂️✨</b>
       </div>
+
       <button class="action-btn" onclick="showSection('step-passcode')">Buka Peti Rahsia 🎁</button>
     </div>
 
@@ -328,7 +327,7 @@
         audio.play().then(() => {
           audioBtn.innerText = "⏸ Pause Lagu";
           isPlaying = true;
-        }).catch(err => console.log("Sentuhan skrin diperlukan"));
+        }).catch(err => console.log("Perlukan klik user"));
       }
     }
 
@@ -371,24 +370,6 @@
       document.getElementById(id).classList.add('active');
     }
 
-    /* TYPEWRITER TEXT DENGAN JARAK SPACING LENGKAP */
-    const fullText = "Sayang , I know kamu penat okey ? . Dah kalau penat , baby always ada dengan sayang okey . Hug me okey manja 🫠❤️ , saya always ada dengan sayang tau . Always . Sayang cari jee baby kat mana mana . Baby always ada . Baby always ada disisi sayang inshaAllah ..\n\nSayang strong gurl and good gurl okey 🥹❤️ love you so much strong gurl yang bucuk baby Nursyamimi .. ..\n\nDaripada: Dato' Sri Muhammad Aliff Aiman 🤵🏻‍♂️✨";
-    
-    let typeIndex = 0;
-    function startTypewriter() {
-      if (typeIndex === 0) {
-        typeWriter();
-      }
-    }
-
-    function typeWriter() {
-      if (typeIndex < fullText.length) {
-        document.getElementById("typewriterText").innerText += fullText.charAt(typeIndex);
-        typeIndex++;
-        setTimeout(typeWriter, 35);
-      }
-    }
-
     function checkPasscode() {
       const input = document.getElementById('passInput').value;
       if (input === CORRECT_PASS) {
@@ -399,7 +380,7 @@
       }
     }
 
-    /* Floating Emojis */
+    /* Floating Emoji */
     setInterval(() => {
       const emoji = document.createElement('div');
       emoji.classList.add('floating-emoji');
