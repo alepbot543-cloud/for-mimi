@@ -10,9 +10,6 @@
   
   <!-- Canvas Confetti -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-  
-  <!-- Three.js for 3D Heart Galaxy -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
   <style>
     * {
@@ -36,7 +33,7 @@
       padding: 12px;
     }
 
-    /* Universal Floating Glass Card with Ultra-Smooth Transitions */
+    /* Universal Floating Glass Card */
     .app-card {
       width: 100%;
       max-width: 410px;
@@ -55,7 +52,6 @@
       flex-direction: column;
       justify-content: space-between;
       overflow: hidden;
-      transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
     }
 
     /* Fixed Music Control Header */
@@ -79,11 +75,11 @@
       padding: 7px 16px; border-radius: 20px;
       cursor: pointer; font-size: 0.75rem; font-weight: 600;
       box-shadow: 0 4px 15px rgba(255, 65, 108, 0.4);
-      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      transition: all 0.3s ease;
     }
     .play-btn:active { transform: scale(0.9); }
 
-    /* Premium Fluid Phase Transitions */
+    /* Fluid Phase Transitions */
     .phase {
       display: none;
       opacity: 0;
@@ -93,7 +89,7 @@
       justify-content: center;
       flex-grow: 1;
       width: 100%;
-      transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1), transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+      transition: opacity 0.4s ease, transform 0.4s ease;
     }
     .phase.active {
       display: flex;
@@ -189,23 +185,30 @@
       margin-top: 20px;
       cursor: pointer;
       box-shadow: 0 10px 25px rgba(255, 117, 140, 0.5);
-      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      transition: all 0.3s ease;
       display: flex;
       align-items: center;
       gap: 10px;
     }
     .envelope-btn:active { transform: scale(0.92); }
 
-    /* FASA 3: 3D HEART GALAXY */
-    #galaxyContainer {
+    /* FASA 3: GALAXY CANVAS DIBAIKI (GERENTI BERJALAN) */
+    .galaxy-box {
       width: 100%;
-      height: 320px;
+      height: 300px;
       border-radius: 24px;
-      overflow: hidden;
       position: relative;
-      background: #000;
-      border: 1px solid rgba(255,255,255,0.2);
+      background: radial-gradient(circle, #2d0b3f 0%, #08010f 100%);
+      border: 1px solid rgba(255,255,255,0.25);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+    }
+    #galaxyCanvas {
+      width: 100%;
+      height: 100%;
     }
 
     /* FASA 4: PASSCODE LOCK (SOFT PINK PASTEL) */
@@ -230,7 +233,7 @@
       height: 18px;
       border: 2px solid #ff758f;
       border-radius: 50%;
-      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      transition: all 0.3s ease;
     }
     .heart-dot.filled {
       background: #ff4d6d;
@@ -277,7 +280,7 @@
       font-size: 0.82rem;
       font-weight: 600;
       cursor: pointer;
-      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      transition: all 0.3s ease;
     }
     .btn-yes { background: #ff4d6d; color: white; box-shadow: 0 6px 16px rgba(255,77,109,0.4); }
     .btn-no { background: #e0e0e0; color: #666; position: absolute; }
@@ -315,9 +318,7 @@
       overflow: hidden;
       border: 2px solid rgba(255,255,255,0.4);
       box-shadow: 0 6px 15px rgba(0,0,0,0.3);
-      transition: transform 0.3s;
     }
-    .gal-item:hover { transform: scale(1.02); }
     .gal-item.full { grid-column: span 2; height: 185px; }
     .gal-item img { width: 100%; height: 100%; object-fit: cover; }
 
@@ -328,7 +329,7 @@
       font-weight: 600; border-radius: 50px;
       cursor: pointer; box-shadow: 0 8px 20px rgba(255, 65, 108, 0.4);
       width: 100%; margin-top: 12px;
-      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      transition: all 0.3s ease;
     }
     .action-btn-main:active { transform: scale(0.95); }
 
@@ -416,19 +417,21 @@
           <circle cx="100" cy="50" r="18" fill="#e9d5ff"/>
         </svg>
 
-        <button class="envelope-btn" onclick="goToPhase('phase3'); initGalaxy();">
+        <button class="envelope-btn" onclick="goToPhase('phase3'); startGalaxyCanvas();">
           <span style="font-size:1.4rem;">✉️</span>
           <span style="font-weight:600; font-size:0.88rem; color:#fff;">Buka Galaksi Cinta 🌌</span>
         </button>
       </div>
     </div>
 
-    <!-- ==================== FASA 3: 3D HEART GALAXY ==================== -->
+    <!-- ==================== FASA 3: GALAXY HEART (KALIS HITAM) ==================== -->
     <div id="phase3" class="phase">
-      <h3 style="color:#ff758c; font-size:1.15rem; margin-bottom:8px;">3D Heart Galaxy ✨</h3>
+      <h3 style="color:#ff758c; font-size:1.15rem; margin-bottom:8px;">Heart Galaxy ✨</h3>
       <p style="font-size:0.72rem; color:#ccc; margin-bottom:12px;">Pusingan kasih sayang kita di angkasa</p>
 
-      <div id="galaxyContainer"></div>
+      <div class="galaxy-box">
+        <canvas id="galaxyCanvas"></canvas>
+      </div>
 
       <button class="action-btn-main" onclick="goToPhase('phase4')">
         Buka Peti Kunci Passcode 🔐
@@ -530,7 +533,7 @@
         bgMusic.play().then(() => {
           isPlaying = true;
           musicBtn.innerText = "⏸ Pause";
-        }).catch(e => console.log("User touch needed"));
+        }).catch(e => console.log("Touch needed"));
       }
     }
 
@@ -547,7 +550,7 @@
       }
     }
 
-    /* ================= ULTRA-SMOOTH PHASE ROUTER ================= */
+    /* ================= SMOOTH PHASE ROUTER ================= */
     function goToPhase(phaseId) {
       const activePhase = document.querySelector('.phase.active');
       if (activePhase) {
@@ -563,7 +566,7 @@
             nextPhase.style.opacity = '1';
             nextPhase.style.transform = 'translateY(0) scale(1)';
           }, 50);
-        }, 400);
+        }, 350);
       } else {
         const nextPhase = document.getElementById(phaseId);
         nextPhase.classList.add('active');
@@ -616,7 +619,6 @@
       }, 30);
     }
 
-    // Pemasa Langsung Bermula Dari Nilai Tepat: 436 Hari, 15 Jam, 22 Minit, 47 Saat
     let totalSeconds = (436 * 86400) + (15 * 3600) + (22 * 60) + 47;
 
     function startPreciseTimer() {
@@ -634,61 +636,60 @@
       }, 1000);
     }
 
-    /* ================= FASA 3: THREE.JS GALAXY ================= */
-    let galaxyInited = false;
-    function initGalaxy() {
-      if(galaxyInited) return;
-      galaxyInited = true;
+    /* ================= FASA 3: ENGIN GALAKSI CANVAS (KALIS HITAM) ================= */
+    let galaxyAnimStarted = false;
+    function startGalaxyCanvas() {
+      if (galaxyAnimStarted) return;
+      galaxyAnimStarted = true;
 
-      const container = document.getElementById('galaxyContainer');
-      const scene = new THREE.Scene();
-      const camera = new THREE.PerspectiveCamera(60, container.clientWidth / container.clientHeight, 0.1, 1000);
-      const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-      renderer.setSize(container.clientWidth, container.clientHeight);
-      container.appendChild(renderer.domElement);
+      const canvas = document.getElementById('galaxyCanvas');
+      const ctx = canvas.getContext('2d');
 
-      const particlesCount = 1200;
-      const geometry = new THREE.BufferGeometry();
-      const positions = new Float32Array(particlesCount * 3);
-      const colors = new Float32Array(particlesCount * 3);
+      canvas.width = canvas.parentElement.clientWidth;
+      canvas.height = canvas.parentElement.clientHeight;
 
-      for(let i = 0; i < particlesCount; i++) {
+      const particles = [];
+      const numParticles = 180;
+
+      for (let i = 0; i < numParticles; i++) {
         let t = Math.PI * (Math.random() * 2 - 1);
-        let x = 16 * Math.pow(Math.sin(t), 3);
-        let y = 13 * Math.cos(t) - 5 * Math.cos(2*t) - 2 * Math.cos(3*t) - Math.cos(4*t);
-        let z = (Math.random() - 0.5) * 10;
+        let scale = Math.random() * 7 + 2;
+        let hx = 16 * Math.pow(Math.sin(t), 3);
+        let hy = -(13 * Math.cos(t) - 5 * Math.cos(2*t) - 2 * Math.cos(3*t) - Math.cos(4*t));
 
-        positions[i*3] = x * 0.25;
-        positions[i*3+1] = y * 0.25;
-        positions[i*3+2] = z * 0.25;
-
-        colors[i*3] = 1;
-        colors[i*3+1] = 0.3 + Math.random()*0.4;
-        colors[i*3+2] = 0.6;
+        particles.push({
+          baseX: canvas.width / 2 + hx * scale,
+          baseY: canvas.height / 2 + hy * scale,
+          x: canvas.width / 2 + hx * scale,
+          y: canvas.height / 2 + hy * scale,
+          size: Math.random() * 2.5 + 1,
+          color: ['#ff4d6d', '#ff758f', '#ffb3c1', '#ffffff', '#e0aaff'][Math.floor(Math.random() * 5)],
+          angle: Math.random() * Math.PI * 2,
+          speed: Math.random() * 0.02 + 0.005
+        });
       }
 
-      geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-      geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+      function renderGalaxy() {
+        ctx.fillStyle = 'rgba(10, 2, 20, 0.2)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      const material = new THREE.PointsMaterial({
-        size: 0.15,
-        vertexColors: true,
-        transparent: true,
-        opacity: 0.85
-      });
+        particles.forEach(p => {
+          p.angle += p.speed;
+          let offset = Math.sin(p.angle) * 6;
+          p.x = p.baseX + Math.cos(p.angle) * offset;
+          p.y = p.baseY + Math.sin(p.angle) * offset;
 
-      const heartPoints = new THREE.Points(geometry, material);
-      scene.add(heartPoints);
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+          ctx.fillStyle = p.color;
+          ctx.shadowBlur = 8;
+          ctx.shadowColor = p.color;
+          ctx.fill();
+        });
 
-      camera.position.z = 8;
-
-      function animate() {
-        requestAnimationFrame(animate);
-        heartPoints.rotation.y += 0.008;
-        heartPoints.rotation.x += 0.003;
-        renderer.render(scene, camera);
+        requestAnimationFrame(renderGalaxy);
       }
-      animate();
+      renderGalaxy();
     }
 
     /* ================= FASA 4: PASSCODE KEYPAD ================= */
