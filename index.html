@@ -11,10 +11,10 @@
       box-sizing: border-box;
       margin: 0;
       padding: 0;
+      font-family: 'Poppins', sans-serif;
     }
     body {
       background: linear-gradient(135deg, #2b0938 0%, #591a4f 50%, #8a2387 100%);
-      font-family: 'Poppins', sans-serif;
       min-height: 100vh;
       color: #fff;
       display: flex;
@@ -26,11 +26,11 @@
 
     .container {
       width: 100%;
-      max-width: 450px;
-      background: rgba(255, 255, 255, 0.08);
+      max-width: 420px;
+      background: rgba(255, 255, 255, 0.1);
       backdrop-filter: blur(18px);
       -webkit-backdrop-filter: blur(18px);
-      border: 1px solid rgba(255, 255, 255, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.25);
       border-radius: 28px;
       padding: 22px;
       box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
@@ -48,59 +48,83 @@
     }
 
     .sub-title {
-      font-size: 0.75rem;
+      font-size: 0.72rem;
       letter-spacing: 2px;
       text-transform: uppercase;
       color: #ffd1d7;
-      margin-bottom: 20px;
+      margin-bottom: 18px;
     }
 
-    /* Audio Bar */
+    /* Audio Player Bar */
     .audio-card {
       background: rgba(0, 0, 0, 0.35);
       border-radius: 50px;
-      padding: 10px 18px;
+      padding: 8px 16px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       margin-bottom: 20px;
       border: 1px solid rgba(255,255,255,0.2);
     }
-    .song-info { text-align: left; font-size: 0.8rem; }
-    .song-title { font-weight: 600; color: #ff9a9e; }
+    .song-info { text-align: left; overflow: hidden; }
+    .song-title { font-weight: 600; color: #ff9a9e; font-size: 0.82rem; }
+    .song-artist { font-size: 0.68rem; color: #ddd; }
     .play-btn {
       background: linear-gradient(45deg, #ff416c, #ff4b2b);
       border: none; color: white;
       padding: 6px 14px; border-radius: 20px;
-      cursor: pointer; font-size: 0.8rem; font-weight: 600;
-      transition: 0.3s;
+      cursor: pointer; font-size: 0.78rem; font-weight: 600;
+      white-space: nowrap;
+      box-shadow: 0 4px 10px rgba(255, 65, 108, 0.4);
     }
 
     /* Sections */
-    .section { display: none; animation: fadeIn 0.6s ease forwards; }
+    .section { display: none; animation: fadeIn 0.5s ease forwards; }
     .section.active { display: block; }
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(12px); }
+      from { opacity: 0; transform: translateY(10px); }
       to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Mascot Header */
+    .mascot-badge {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.15);
+      border-radius: 30px;
+      padding: 8px 14px;
+      font-size: 0.8rem;
+      margin-bottom: 15px;
     }
 
     /* Nailong Interactive Box */
     .nailong-box {
       background: rgba(0,0,0,0.25);
       border-radius: 20px;
-      padding: 15px;
-      margin-bottom: 15px;
+      padding: 18px 15px;
+      margin-bottom: 18px;
       border: 2px dashed #ff758c;
-      position: relative;
+      text-align: center;
     }
-    .nailong-img {
-      width: 100px;
-      height: 100px;
+    .nailong-avatar {
+      width: 105px;
+      height: 105px;
+      border-radius: 50%;
+      background: #ffe135;
+      border: 3px solid #fff;
+      margin: 10px auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3.5rem;
       cursor: pointer;
-      transition: transform 0.1s ease;
       user-select: none;
+      box-shadow: 0 8px 20px rgba(255, 225, 53, 0.4);
+      transition: transform 0.1s ease;
     }
-    .nailong-img:active { transform: scale(0.85) rotate(-5deg); }
+    .nailong-avatar:active { transform: scale(0.88) rotate(-6deg); }
 
     .progress-bar {
       width: 100%;
@@ -108,7 +132,7 @@
       background: rgba(255,255,255,0.2);
       border-radius: 10px;
       overflow: hidden;
-      margin-top: 10px;
+      margin-top: 12px;
     }
     .progress-fill {
       height: 100%;
@@ -117,35 +141,25 @@
       transition: width 0.2s ease;
     }
 
-    /* Typewriter Message */
+    /* Typewriter Sweet Message Box */
     .typewriter-box {
-      background: rgba(255, 255, 255, 0.95);
+      background: #ffffff;
       color: #2d3436;
-      padding: 18px;
+      padding: 20px;
       border-radius: 20px;
       font-size: 0.88rem;
-      line-height: 1.7;
+      line-height: 1.75;
       text-align: left;
       min-height: 180px;
       margin-bottom: 20px;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.25);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+      word-break: break-word;
       white-space: pre-line;
     }
 
-    /* Capybara Mascot */
-    .capybara-badge {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      background: rgba(255,255,255,0.15);
-      border-radius: 30px;
-      padding: 6px 14px;
-      font-size: 0.8rem;
-      margin-bottom: 15px;
-    }
-
-    /* Passcode */
+    /* Passcode Input */
     .passcode-input {
       width: 75%;
       padding: 10px;
@@ -187,7 +201,7 @@
     }
     .gallery-item.full-width {
       grid-column: span 2;
-      height: 240px;
+      height: 230px;
     }
     .gallery-item img {
       width: 100%;
@@ -210,6 +224,7 @@
 </head>
 <body onclick="playAudioDirect()">
 
+  <!-- Audio MP3 Cinta Sesungguhnya -->
   <audio id="myAudio" loop preload="auto" crossorigin="anonymous">
     <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=romantic-love-112199.mp3" type="audio/mpeg">
   </audio>
@@ -218,25 +233,30 @@
     <div class="header-title">For My Special One</div>
     <div class="sub-title">Dato' Sri Aliff ❤️ Datin Sri Nursyamimi</div>
 
-    <!-- Music Bar -->
+    <!-- Music Player -->
     <div class="audio-card">
       <div class="song-info">
         <div class="song-title">Cinta Sesungguhnya ❤️</div>
-        <div style="font-size:0.68rem; color:#ccc;">Tekan butang untuk lagu</div>
+        <div class="song-artist">Sabhi Saddi ft. Marsha</div>
       </div>
       <button class="play-btn" onclick="toggleAudio(event)" id="audioBtn">▶ Play Lagu</button>
     </div>
 
-    <!-- STEP 1: NAILONG TAP INTERACTION -->
+    <!-- STEP 1: NAILONG & CAPYBARA TAP INTERACTION -->
     <div id="step-nailong" class="section active">
-      <div class="capybara-badge">
-        <span>🦫 Capybara Senyum: "Tekan Nailong Dulu Sayang!"</span>
+      <div class="mascot-badge">
+        <span>🦫 Capybara & 🟡 Nailong Kuning Comel!</span>
       </div>
       <div class="nailong-box">
-        <p style="font-size:0.8rem; margin-bottom:10px; color:#ffccd5;">
-          🐉 Tekan gambar Nailong comel ni 5 kali untuk kumpul <i>Love Power</i>!
+        <p style="font-size:0.8rem; color:#ffccd5; margin-bottom:8px;">
+          Tekan Nailong Kuning ni 5 kali untuk kumpul <i>Love Power</i>! 🟡✨
         </p>
-        <img src="https://api.iconify.design/fluent-emoji-flat:dragon.svg" class="nailong-img" id="nailongBtn" onclick="tapNailong()">
+        
+        <!-- Nailong Icon Yellow Dino -->
+        <div class="nailong-avatar" id="nailongBtn" onclick="tapNailong()">
+          🟡
+        </div>
+
         <div class="progress-bar">
           <div class="progress-fill" id="loveProgress"></div>
         </div>
@@ -249,6 +269,9 @@
 
     <!-- STEP 2: TYPEWRITER SWEET MESSAGE -->
     <div id="step-message" class="section">
+      <div class="mascot-badge">
+        <span>🦫 Capybara Pegang Mesej Rahsia ❤️</span>
+      </div>
       <div class="typewriter-box">
         <span id="typewriterText"></span>
       </div>
@@ -289,8 +312,8 @@
         </div>
       </div>
 
-      <div style="margin-top:20px; font-size:0.85rem; color:#ff9a9e;">
-        🦫 Capybara & 🐉 Nailong cakap: <br><b>"I Love You So Much Datin Sri Nursyamimi!" ❤️</b>
+      <div style="margin-top:20px; font-size:0.85rem; color:#ff9a9e; line-height: 1.5;">
+        🦫 Capybara & 🟡 Nailong Kuning cakap: <br><b>"I Love You So Much Datin Sri Nursyamimi!" ❤️</b>
       </div>
     </div>
 
@@ -334,7 +357,7 @@
         document.getElementById('loveProgress').style.width = percent + '%';
         document.getElementById('tapCountText').innerText = tapCount + " / 5 Love Collected ❤️";
 
-        confetti({ particleCount: 15, spread: 40, origin: { y: 0.6 } });
+        confetti({ particleCount: 18, spread: 50, origin: { y: 0.6 } });
 
         if (tapCount === 5) {
           const btn = document.getElementById('btnToMessage');
@@ -350,8 +373,8 @@
       document.getElementById(id).classList.add('active');
     }
 
-    /* Typewriter Effect */
-    const fullText = "sayangg , i knoww kamuu penatt okeyy ? . dahh kalauu penatt , babyy alwayss adaa dengann sayangg okeyy . hugg mee okeyy manjaa 🫠❤️ , sayaa alwayss adaa dengann sayangg tauu . alwayss . sayangg carii jee babyy katt manaa manaa . babyy alwayss adaa . babyy alwayss adaa disisii sayangg inshaallahhh.. sayangg strongg gurll andd goodgurll okeyy 🥹❤️loveyouu somuchhh strongg gurll yangg bucukk babyy nursyamimii.. ..\n\nDaripada: Dato' Sri Muhammad Aliff Aiman 🤵🏻‍♂️✨";
+    /* Typewriter Effect with Spacing Fix */
+    const fullText = "Sayang , I know kamu penat okey ? . Dah kalau penat , baby always ada dengan sayang okey . Hug me okey manja 🫠❤️ , saya always ada dengan sayang tau . Always . Sayang cari jee baby kat mana mana . Baby always ada . Baby always ada disisi sayang inshaAllah .. Sayang strong gurl and good gurl okey 🥹❤️ love you so much strong gurl yang bucuk baby Nursyamimi .. ..\n\nDaripada: Dato' Sri Muhammad Aliff Aiman 🤵🏻‍♂️✨";
     
     let typeIndex = 0;
     function startTypewriter() {
@@ -378,11 +401,11 @@
       }
     }
 
-    /* Floating Emoji */
+    /* Floating Capybara, Nailong & Hearts */
     setInterval(() => {
       const emoji = document.createElement('div');
       emoji.classList.add('floating-emoji');
-      emoji.innerText = ['🦫', '🐉', '❤️', '💖', '✨'][Math.floor(Math.random()*5)];
+      emoji.innerText = ['🦫', '🟡', '❤️', '💖', '✨'][Math.floor(Math.random()*5)];
       emoji.style.left = Math.random() * 90 + 'vw';
       emoji.style.fontSize = (Math.random() * 12 + 18) + 'px';
       emoji.style.animationDuration = Math.random() * 3 + 3 + 's';
