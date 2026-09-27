@@ -33,7 +33,6 @@
       padding: 12px;
     }
 
-    /* Universal Floating Glass Card */
     .app-card {
       width: 100%;
       max-width: 410px;
@@ -54,7 +53,6 @@
       overflow: hidden;
     }
 
-    /* Fixed Music Control Header */
     .audio-header {
       background: rgba(0, 0, 0, 0.45);
       border-radius: 50px;
@@ -79,7 +77,6 @@
     }
     .play-btn:active { transform: scale(0.9); }
 
-    /* Fluid Phase Transitions */
     .phase {
       display: none;
       opacity: 0;
@@ -97,7 +94,7 @@
       transform: translateY(0) scale(1);
     }
 
-    /* FASA 1: LOVE TREE & PREMIUM TIMER */
+    /* FASA 1 */
     .tree-canvas-container {
       position: relative;
       width: 100%;
@@ -158,7 +155,7 @@
     .timer-val { font-size: 1.15rem; font-weight: 700; color: #ff9a9e; }
     .timer-lbl { font-size: 0.58rem; color: #bbb; text-transform: uppercase; margin-top: 2px; }
 
-    /* FASA 2: FLOWERS FOR YOU */
+    /* FASA 2 */
     .flower-box {
       position: relative;
       width: 100%;
@@ -190,15 +187,14 @@
       align-items: center;
       gap: 10px;
     }
-    .envelope-btn:active { transform: scale(0.92); }
 
-    /* FASA 3: GALAXY CANVAS DIBAIKI (GERENTI BERJALAN) */
+    /* FASA 3: GALAXY HEART CSS ANIMATION */
     .galaxy-box {
       width: 100%;
-      height: 300px;
+      height: 290px;
       border-radius: 24px;
       position: relative;
-      background: radial-gradient(circle, #2d0b3f 0%, #08010f 100%);
+      background: radial-gradient(circle, #3b0747 0%, #09010f 100%);
       border: 1px solid rgba(255,255,255,0.25);
       overflow: hidden;
       display: flex;
@@ -206,12 +202,58 @@
       justify-content: center;
       box-shadow: 0 15px 35px rgba(0,0,0,0.5);
     }
-    #galaxyCanvas {
-      width: 100%;
-      height: 100%;
+    
+    .g-heart {
+      position: relative;
+      width: 100px;
+      height: 90px;
+      animation: floatGHeart 2s ease-in-out infinite alternate;
+    }
+    .g-heart::before, .g-heart::after {
+      content: "";
+      position: absolute;
+      left: 50px;
+      top: 0;
+      width: 50px;
+      height: 80px;
+      background: radial-gradient(circle, #ff416c, #ff4b2b);
+      border-radius: 50px 50px 0 0;
+      transform: rotate(-45deg);
+      transform-origin: 0 100%;
+      box-shadow: 0 0 25px #ff416c, 0 0 50px #ff4b2b;
+    }
+    .g-heart::after {
+      left: 0;
+      transform: rotate(45deg);
+      transform-origin: 100% 100%;
     }
 
-    /* FASA 4: PASSCODE LOCK (SOFT PINK PASTEL) */
+    @keyframes floatGHeart {
+      0% { transform: scale(1) translateY(0); }
+      100% { transform: scale(1.1) translateY(-10px); }
+    }
+
+    .stars-bg {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        radial-gradient(2px 2px at 20px 30px, #fff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 40px 70px, #ff80bf, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 90px 40px, #fff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 160px 120px, #fff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 230px 190px, #ff80bf, rgba(0,0,0,0)),
+        radial-gradient(3px 3px at 280px 50px, #fff, rgba(0,0,0,0));
+      background-repeat: repeat;
+      background-size: 200px 200px;
+      animation: rotateBg 20s linear infinite;
+    }
+    @keyframes rotateBg {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    /* FASA 4 */
     .pink-theme-box {
       background: #fff0f3;
       border-radius: 32px;
@@ -261,7 +303,7 @@
     }
     .key-btn:active { transform: scale(0.9); background: #ffe3e8; }
 
-    /* FASA 5: QUIZ & MASCOT */
+    /* FASA 5 */
     .quiz-card {
       background: #ffffff;
       border-radius: 28px;
@@ -285,7 +327,6 @@
     .btn-yes { background: #ff4d6d; color: white; box-shadow: 0 6px 16px rgba(255,77,109,0.4); }
     .btn-no { background: #e0e0e0; color: #666; position: absolute; }
 
-    /* NAILONG TAPPER */
     .nailong-avatar {
       width: 95px;
       height: 95px;
@@ -303,7 +344,7 @@
     }
     .nailong-avatar:active { transform: scale(0.85) rotate(-6deg); }
 
-    /* FASA 6: GALLERY & REPLAY */
+    /* FASA 6 */
     .gallery-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -318,9 +359,10 @@
       overflow: hidden;
       border: 2px solid rgba(255,255,255,0.4);
       box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+      background: rgba(255,255,255,0.1);
     }
     .gal-item.full { grid-column: span 2; height: 185px; }
-    .gal-item img { width: 100%; height: 100%; object-fit: cover; }
+    .gal-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
     .action-btn-main {
       background: linear-gradient(135deg, #ff416c, #ff4b2b);
@@ -345,7 +387,6 @@
       box-shadow: 0 10px 25px rgba(0,0,0,0.25);
     }
 
-    /* Floating Background Emojis */
     .bg-emoji {
       position: fixed;
       top: -30px;
@@ -360,14 +401,12 @@
 </head>
 <body onclick="initAudioOnInteraction()">
 
-  <!-- AUDIO ELEMENT MP3 LOCAL REPO -->
   <audio id="bgMusic" loop preload="auto">
     <source src="lagu.mp3" type="audio/mpeg">
   </audio>
 
   <div class="app-card">
     
-    <!-- FIXED MUSIC HEADER -->
     <div class="audio-header">
       <div>
         <div class="song-title">Cinta Sesungguhnya ❤️</div>
@@ -376,7 +415,7 @@
       <button class="play-btn" id="musicToggleBtn" onclick="toggleMusic(event)">▶ Play</button>
     </div>
 
-    <!-- ==================== FASA 1: LOVE TREE ==================== -->
+    <!-- FASA 1 -->
     <div id="phase1" class="phase active">
       <h2 style="font-family: 'Sacramento', cursive; font-size: 2.4rem; color: #ff9a9e;">Gift For Her</h2>
       <p style="font-size: 0.72rem; color: #ffd1d7; margin-bottom: 12px;">Dato' Sri Aliff ❤️ Datin Sri Nursyamimi</p>
@@ -404,7 +443,7 @@
       </button>
     </div>
 
-    <!-- ==================== FASA 2: FLOWERS FOR YOU ==================== -->
+    <!-- FASA 2 -->
     <div id="phase2" class="phase">
       <h2 style="font-family: 'Sacramento', cursive; font-size: 2.6rem; color: #d8b4fe;">Flowers For You</h2>
       
@@ -417,20 +456,21 @@
           <circle cx="100" cy="50" r="18" fill="#e9d5ff"/>
         </svg>
 
-        <button class="envelope-btn" onclick="goToPhase('phase3'); startGalaxyCanvas();">
+        <button class="envelope-btn" onclick="goToPhase('phase3')">
           <span style="font-size:1.4rem;">✉️</span>
           <span style="font-weight:600; font-size:0.88rem; color:#fff;">Buka Galaksi Cinta 🌌</span>
         </button>
       </div>
     </div>
 
-    <!-- ==================== FASA 3: GALAXY HEART (KALIS HITAM) ==================== -->
+    <!-- FASA 3 -->
     <div id="phase3" class="phase">
       <h3 style="color:#ff758c; font-size:1.15rem; margin-bottom:8px;">Heart Galaxy ✨</h3>
       <p style="font-size:0.72rem; color:#ccc; margin-bottom:12px;">Pusingan kasih sayang kita di angkasa</p>
 
       <div class="galaxy-box">
-        <canvas id="galaxyCanvas"></canvas>
+        <div class="stars-bg"></div>
+        <div class="g-heart"></div>
       </div>
 
       <button class="action-btn-main" onclick="goToPhase('phase4')">
@@ -438,7 +478,7 @@
       </button>
     </div>
 
-    <!-- ==================== FASA 4: PASSCODE LOCK (PINK PASTEL) ==================== -->
+    <!-- FASA 4 -->
     <div id="phase4" class="phase">
       <div class="pink-theme-box">
         <div class="pink-title">ayooo ayang tebak passwordnya! 💗</div>
@@ -470,10 +510,8 @@
       </div>
     </div>
 
-    <!-- ==================== FASA 5: QUIZ & NAILONG MASCOT ==================== -->
+    <!-- FASA 5 -->
     <div id="phase5" class="phase">
-      
-      <!-- SUB-STEP 5A: QUIZ -->
       <div id="quizSub" class="quiz-card">
         <div style="font-size:3.2rem; margin-bottom:6px;">🐼</div>
         <div class="quiz-question">aloo sayang, udah siap belom sama kadonya? 🥺❤️</div>
@@ -483,7 +521,6 @@
         </div>
       </div>
 
-      <!-- SUB-STEP 5B: NAILONG TAPPER -->
       <div id="nailongSub" class="quiz-card" style="display:none; background:rgba(0,0,0,0.35); color:white; border:1px solid rgba(255,255,255,0.15);">
         <p style="font-size:0.82rem; color:#ffccd5;">Ketuk Nailong Kuning 5 kali untuk kumpul Love Power! 🟡✨</p>
         <div class="nailong-avatar" onclick="tapNailong()">🟡</div>
@@ -492,10 +529,9 @@
           Buka Galeri Kenangan 📸
         </button>
       </div>
-
     </div>
 
-    <!-- ==================== FASA 6: GALLERY & REPLAY ==================== -->
+    <!-- FASA 6 -->
     <div id="phase6" class="phase">
       <h3 style="color:#ff9a9e; font-size:1.25rem;">cieee udah bisa dibuka! ❤️</h3>
       <p style="font-size:0.72rem; color:#ffd1d7;">Kenangan Indah Dato' Sri Aliff & Datin Sri Nursyamimi</p>
@@ -503,16 +539,15 @@
       <div class="msg-content-box">
         Sayang, I know kamu penat okey? Dah kalau penat, baby always ada dengan sayang okey. <br><br>
         Hug me okey manja 🫠❤️, saya always ada dengan sayang tau. Always. Sayang cari jee baby kat mana mana, baby always ada disisi sayang inshaAllah.. <br><br>
-        <b>Happy Anniversary / Monthsary My Love! ❤️</b>
+        <b>I will try to be the best man for you, a gentle man. Like your dream sayangg , babyy tryy too bee kind okay sayangg ? ❤️</b>
       </div>
 
       <div class="gallery-grid">
         <div class="gal-item full"><img src="https://i.ibb.co/HLf8qvMw/IMG-20260825-065837-673.jpg" alt="Memory 1"></div>
         <div class="gal-item"><img src="https://i.ibb.co/GvgrTp4Q/motion-photo-3024752220262816570.jpg" alt="Memory 2"></div>
-        <div class="gal-item"><img src="https://i.ibb.co/9mcvthCf/IMG-20260626-095638-093.jpg" alt="Memory 3"></div>
-        <div class="gal-item"><img src="https://i.ibb.co/sdMgGFxk/IMG-20260620-160844-970.jpg" alt="Memory 4"></div>
-        <div class="gal-item"><img src="https://i.ibb.co/BKFTb0CF/IMG-20260311-202932-528.jpg" alt="Memory 5"></div>
-        <div class="gal-item full"><img src="https://i.ibb.co/fdSKPZt6/fd38b9acc09e7d9350e49f44549148e6-0.webp" alt="Memory 6"></div>
+        <div class="gal-item"><img src="https://i.ibb.co/sdMgGFxk/IMG-20260620-160844-970.jpg" alt="Memory 3"></div>
+        <div class="gal-item"><img src="https://i.ibb.co/BKFTb0CF/IMG-20260311-202932-528.jpg" alt="Memory 4"></div>
+        <div class="gal-item full"><img src="https://i.ibb.co/fdSKPZt6/fd38b9acc09e7d9350e49f44549148e6-0.webp" alt="Memory 5"></div>
       </div>
 
       <button class="action-btn-main" style="margin-top:16px; background: #ab47bc;" onclick="restartApp()">
@@ -523,7 +558,6 @@
   </div>
 
   <script>
-    /* ================= MUSIC LOGIC ================= */
     const bgMusic = document.getElementById('bgMusic');
     const musicBtn = document.getElementById('musicToggleBtn');
     let isPlaying = false;
@@ -533,7 +567,7 @@
         bgMusic.play().then(() => {
           isPlaying = true;
           musicBtn.innerText = "⏸ Pause";
-        }).catch(e => console.log("Touch needed"));
+        }).catch(e => console.log("Interaction required"));
       }
     }
 
@@ -550,7 +584,6 @@
       }
     }
 
-    /* ================= SMOOTH PHASE ROUTER ================= */
     function goToPhase(phaseId) {
       const activePhase = document.querySelector('.phase.active');
       if (activePhase) {
@@ -575,7 +608,7 @@
       }
     }
 
-    /* ================= FASA 1: TREE & LIVE PRECISE COUNTER ================= */
+    /* FASA 1 */
     function growTree() {
       document.getElementById('startTreeBtn').style.display = 'none';
       const canvas = document.getElementById('treeCanvas');
@@ -636,63 +669,7 @@
       }, 1000);
     }
 
-    /* ================= FASA 3: ENGIN GALAKSI CANVAS (KALIS HITAM) ================= */
-    let galaxyAnimStarted = false;
-    function startGalaxyCanvas() {
-      if (galaxyAnimStarted) return;
-      galaxyAnimStarted = true;
-
-      const canvas = document.getElementById('galaxyCanvas');
-      const ctx = canvas.getContext('2d');
-
-      canvas.width = canvas.parentElement.clientWidth;
-      canvas.height = canvas.parentElement.clientHeight;
-
-      const particles = [];
-      const numParticles = 180;
-
-      for (let i = 0; i < numParticles; i++) {
-        let t = Math.PI * (Math.random() * 2 - 1);
-        let scale = Math.random() * 7 + 2;
-        let hx = 16 * Math.pow(Math.sin(t), 3);
-        let hy = -(13 * Math.cos(t) - 5 * Math.cos(2*t) - 2 * Math.cos(3*t) - Math.cos(4*t));
-
-        particles.push({
-          baseX: canvas.width / 2 + hx * scale,
-          baseY: canvas.height / 2 + hy * scale,
-          x: canvas.width / 2 + hx * scale,
-          y: canvas.height / 2 + hy * scale,
-          size: Math.random() * 2.5 + 1,
-          color: ['#ff4d6d', '#ff758f', '#ffb3c1', '#ffffff', '#e0aaff'][Math.floor(Math.random() * 5)],
-          angle: Math.random() * Math.PI * 2,
-          speed: Math.random() * 0.02 + 0.005
-        });
-      }
-
-      function renderGalaxy() {
-        ctx.fillStyle = 'rgba(10, 2, 20, 0.2)';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-        particles.forEach(p => {
-          p.angle += p.speed;
-          let offset = Math.sin(p.angle) * 6;
-          p.x = p.baseX + Math.cos(p.angle) * offset;
-          p.y = p.baseY + Math.sin(p.angle) * offset;
-
-          ctx.beginPath();
-          ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-          ctx.fillStyle = p.color;
-          ctx.shadowBlur = 8;
-          ctx.shadowColor = p.color;
-          ctx.fill();
-        });
-
-        requestAnimationFrame(renderGalaxy);
-      }
-      renderGalaxy();
-    }
-
-    /* ================= FASA 4: PASSCODE KEYPAD ================= */
+    /* FASA 4 */
     let passInput = "";
     const CORRECT_PASS = "1807";
 
@@ -724,7 +701,7 @@
       }
     }
 
-    /* ================= FASA 5: QUIZ & NAILONG ================= */
+    /* FASA 5 */
     function moveNoBtn() {
       const btn = document.getElementById('btnNo');
       const x = (Math.random() - 0.5) * 160;
@@ -753,7 +730,7 @@
       }
     }
 
-    /* ================= FASA 6: REPLAY ================= */
+    /* FASA 6 */
     function triggerConfetti() {
       confetti({ particleCount: 200, spread: 90, origin: { y: 0.5 } });
     }
@@ -769,7 +746,6 @@
       goToPhase('phase1');
     }
 
-    /* Background Floating Emojis */
     setInterval(() => {
       const emoji = document.createElement('div');
       emoji.classList.add('bg-emoji');
