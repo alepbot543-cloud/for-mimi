@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>For My Special One ❤️</title>
+  <title>Special For Datin Sri Nursyamimi ❤️</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Sacramento&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <style>
@@ -13,7 +13,6 @@
       padding: 0;
       font-family: 'Poppins', sans-serif;
     }
-
     body {
       background: linear-gradient(135deg, #2b0938 0%, #591a4f 50%, #8a2387 100%);
       min-height: 100vh;
@@ -27,8 +26,8 @@
 
     .container {
       width: 100%;
-      max-width: 380px;
-      background: rgba(255, 255, 255, 0.12);
+      max-width: 400px;
+      background: rgba(255, 255, 255, 0.1);
       backdrop-filter: blur(18px);
       -webkit-backdrop-filter: blur(18px);
       border: 1px solid rgba(255, 255, 255, 0.25);
@@ -42,100 +41,174 @@
 
     .header-title {
       font-family: 'Sacramento', cursive;
-      font-size: 2.5rem;
+      font-size: 2.6rem;
       background: linear-gradient(45deg, #ff9a9e, #fecfef);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      margin-bottom: 2px;
     }
 
     .sub-title {
-      font-size: 0.7rem;
-      letter-spacing: 1.5px;
+      font-size: 0.72rem;
+      letter-spacing: 2px;
       text-transform: uppercase;
       color: #ffd1d7;
       margin-bottom: 18px;
       font-weight: 600;
     }
 
-    /* Audio Player Bar */
+    /* Music Bar */
     .audio-card {
       background: rgba(0, 0, 0, 0.35);
       border-radius: 50px;
-      padding: 8px 14px;
+      padding: 8px 16px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 18px;
-      border: 1px solid rgba(255, 255, 255, 0.2);
+      margin-bottom: 20px;
+      border: 1px solid rgba(255,255,255,0.2);
     }
-    .song-info {
-      text-align: left;
-      overflow: hidden;
-      margin-right: 8px;
-    }
-    .song-title {
-      font-weight: 600;
-      color: #ff9a9e;
-      font-size: 0.8rem;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-    .song-artist {
-      font-size: 0.65rem;
-      color: #ddd;
-    }
+    .song-info { text-align: left; overflow: hidden; margin-right: 8px; }
+    .song-title { font-weight: 600; color: #ff9a9e; font-size: 0.82rem; }
+    .song-artist { font-size: 0.68rem; color: #ddd; }
     .play-btn {
       background: linear-gradient(45deg, #ff416c, #ff4b2b);
-      border: none;
-      color: white;
-      padding: 6px 12px;
-      border-radius: 20px;
-      cursor: pointer;
-      font-size: 0.75rem;
-      font-weight: 600;
+      border: none; color: white;
+      padding: 6px 14px; border-radius: 20px;
+      cursor: pointer; font-size: 0.78rem; font-weight: 600;
       white-space: nowrap;
       box-shadow: 0 4px 10px rgba(255, 65, 108, 0.4);
     }
 
-    /* KOTAK MESEJ TEKS (DIBAIKI UNTUK AVOID OVERFLOW) */
-    .message-box {
+    /* Sections */
+    .section { display: none; animation: fadeIn 0.5s ease forwards; }
+    .section.active { display: block; }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .mascot-badge {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.15);
+      border-radius: 30px;
+      padding: 8px 14px;
+      font-size: 0.8rem;
+      margin-bottom: 15px;
+    }
+
+    /* Nailong Interactive Box */
+    .nailong-box {
+      background: rgba(0,0,0,0.25);
+      border-radius: 20px;
+      padding: 18px 15px;
+      margin-bottom: 18px;
+      border: 2px dashed #ff758c;
+      text-align: center;
+    }
+    .nailong-avatar {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: #ffe135;
+      border: 3px solid #fff;
+      margin: 10px auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3.5rem;
+      cursor: pointer;
+      user-select: none;
+      box-shadow: 0 8px 20px rgba(255, 225, 53, 0.4);
+      transition: transform 0.1s ease;
+    }
+    .nailong-avatar:active { transform: scale(0.88) rotate(-6deg); }
+
+    .progress-bar {
+      width: 100%;
+      height: 12px;
+      background: rgba(255,255,255,0.2);
+      border-radius: 10px;
+      overflow: hidden;
+      margin-top: 12px;
+    }
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #ff416c, #ff4b2b);
+      transition: width 0.2s ease;
+    }
+
+    /* Typewriter Box Fix */
+    .typewriter-box {
       background: #ffffff;
       color: #2d3436;
       padding: 18px 16px;
       border-radius: 20px;
       font-size: 0.85rem;
-      line-height: 1.6;
+      line-height: 1.7;
       text-align: left;
-      margin-bottom: 18px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+      min-height: 160px;
+      margin-bottom: 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
       
-      /* Tetapan Elak Teks Terpotong/Bertindih */
       word-wrap: break-word !important;
       overflow-wrap: break-word !important;
       word-break: break-word !important;
-      white-space: normal !important;
+      white-space: pre-line !important;
+    }
+
+    .passcode-input {
+      width: 75%;
+      padding: 10px;
+      border-radius: 12px;
+      border: 2px solid #ff758c;
+      background: rgba(0,0,0,0.4);
+      color: white;
+      font-size: 1.2rem;
+      text-align: center;
+      letter-spacing: 4px;
+      outline: none;
+      margin: 15px 0;
     }
 
     .action-btn {
       background: linear-gradient(45deg, #ff416c, #ff4b2b);
-      color: white;
-      border: none;
-      padding: 13px 20px;
-      font-size: 0.88rem;
-      font-weight: 600;
-      border-radius: 50px;
-      cursor: pointer;
-      box-shadow: 0 5px 18px rgba(255, 65, 108, 0.4);
-      width: 100%;
-      transition: transform 0.2s;
+      color: white; border: none;
+      padding: 12px 24px; font-size: 0.9rem;
+      font-weight: 600; border-radius: 50px;
+      cursor: pointer; box-shadow: 0 5px 18px rgba(255, 65, 108, 0.4);
+      width: 100%; transition: 0.3s;
     }
-    .action-btn:active {
-      transform: scale(0.97);
+    .action-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    /* Photo Gallery */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-top: 15px;
+    }
+    .gallery-item {
+      width: 100%;
+      height: 150px;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 2px solid rgba(255,255,255,0.3);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+    .gallery-item.full-width {
+      grid-column: span 2;
+      height: 220px;
+    }
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
-    /* Floating Emojis (Nailong & Capybara) */
     .floating-emoji {
       position: fixed;
       top: -30px;
@@ -144,22 +217,20 @@
       animation: fall linear forwards;
     }
     @keyframes fall {
-      to {
-        transform: translateY(105vh) rotate(360deg);
-      }
+      to { transform: translateY(105vh) rotate(360deg); }
     }
   </style>
 </head>
 <body onclick="playAudioDirect()">
 
-  <!-- Fail Audio Cinta Sesungguhnya -->
+  <!-- Memanggil Fail lagu.mp3 yang Di-upload ke GitHub -->
   <audio id="myAudio" loop preload="auto">
-    <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=romantic-love-112199.mp3" type="audio/mpeg">
+    <source src="lagu.mp3" type="audio/mpeg">
   </audio>
 
   <div class="container">
     <div class="header-title">For My Special One</div>
-    <div class="sub-title">DATO' SRI ALIFF ❤️ DATIN SRI NURSYAMIMI</div>
+    <div class="sub-title">Dato' Sri Aliff ❤️ Datin Sri Nursyamimi</div>
 
     <!-- Music Player -->
     <div class="audio-card">
@@ -167,30 +238,97 @@
         <div class="song-title">Cinta Sesungguhnya ❤️</div>
         <div class="song-artist">Sabhi Saddi ft. Marsha</div>
       </div>
-      <button class="play-btn" onclick="toggleAudio(event)" id="audioBtn">⏸ Pause Lagu</button>
+      <button class="play-btn" onclick="toggleAudio(event)" id="audioBtn">▶ Play Lagu</button>
     </div>
 
-    <!-- Kotak Mesej Yang Kemas -->
-    <div class="message-box">
-      sayangg, i know kamuu penat tokeyy?. dahh kalauu penat rehat tauu.. 😘<br><br>
-      ❤️ saya alwayss ada dengann sayangg tauu. alwayss support sayangg. 🥺❤️ love youu so muchhh
+    <!-- STEP 1: NAILONG & CAPYBARA -->
+    <div id="step-nailong" class="section active">
+      <div class="mascot-badge">
+        <span>🦫 Capybara & 🟡 Nailong Kuning Comel!</span>
+      </div>
+      <div class="nailong-box">
+        <p style="font-size:0.8rem; color:#ffccd5; margin-bottom:8px;">
+          Tekan Nailong Kuning ni 5 kali untuk kumpul <i>Love Power</i>! 🟡✨
+        </p>
+        
+        <div class="nailong-avatar" id="nailongBtn" onclick="tapNailong()">
+          🟡
+        </div>
+
+        <div class="progress-bar">
+          <div class="progress-fill" id="loveProgress"></div>
+        </div>
+        <p id="tapCountText" style="font-size:0.75rem; margin-top:8px; color:#ffd1d7;">0 / 5 Love Collected</p>
+      </div>
+      <button class="action-btn" id="btnToMessage" disabled onclick="showSection('step-message'); startTypewriter();">
+        Seterusnya 🔒 (Kumpul Love Dulu)
+      </button>
     </div>
 
-    <button class="action-btn" onclick="openSecret()">Buka Peti Rahsia 🎁</button>
+    <!-- STEP 2: TYPEWRITER SWEET MESSAGE -->
+    <div id="step-message" class="section">
+      <div class="mascot-badge">
+        <span>🦫 Capybara Pegang Mesej Rahsia ❤️</span>
+      </div>
+      <div class="typewriter-box">
+        <span id="typewriterText"></span>
+      </div>
+      <button class="action-btn" onclick="showSection('step-passcode')">Buka Peti Rahsia 🎁</button>
+    </div>
+
+    <!-- STEP 3: PASSCODE LOCK -->
+    <div id="step-passcode" class="section">
+      <h3 style="color:#ff758c; margin-bottom:8px;">Peti Kunci Rahsia 🔐</h3>
+      <p style="font-size:0.8rem; color:#eee;">Masukkan 4-digit tarikh anniversary kita:</p>
+      <input type="password" id="passInput" class="passcode-input" maxlength="4" placeholder="••••">
+      <button class="action-btn" onclick="checkPasscode()">Buka Kunci ❤️</button>
+    </div>
+
+    <!-- STEP 4: PHOTO GALLERY MEMORIES -->
+    <div id="step-gallery" class="section">
+      <h3 style="color:#ff758c; margin-bottom:4px;">Kenangan Indah Kita 📸</h3>
+      <p style="font-size:0.75rem; color:#ffd1d7; margin-bottom:12px;">Datin Sri Nursyamimi & Dato' Sri Aliff</p>
+
+      <div class="gallery">
+        <div class="gallery-item full-width">
+          <img src="https://i.ibb.co/HLf8qvMw/IMG-20260825-065837-673.jpg" alt="Memory 1">
+        </div>
+        <div class="gallery-item">
+          <img src="https://i.ibb.co/GvgrTp4Q/motion-photo-3024752220262816570.jpg" alt="Memory 2">
+        </div>
+        <div class="gallery-item">
+          <img src="https://i.ibb.co/9mcvthCf/IMG-20260626-095638-093.jpg" alt="Memory 3">
+        </div>
+        <div class="gallery-item">
+          <img src="https://i.ibb.co/sdMgGFxk/IMG-20260620-160844-970.jpg" alt="Memory 4">
+        </div>
+        <div class="gallery-item">
+          <img src="https://i.ibb.co/BKFTb0CF/IMG-20260311-202932-528.jpg" alt="Memory 5">
+        </div>
+        <div class="gallery-item full-width">
+          <img src="https://i.ibb.co/fdSKPZt6/fd38b9acc09e7d9350e49f44549148e6-0.webp" alt="Memory 6">
+        </div>
+      </div>
+
+      <div style="margin-top:20px; font-size:0.85rem; color:#ff9a9e; line-height: 1.5;">
+        🦫 Capybara & 🟡 Nailong Kuning cakap: <br><b>"I Love You So Much Datin Sri Nursyamimi!" ❤️</b>
+      </div>
+    </div>
+
   </div>
 
   <script>
+    const CORRECT_PASS = "1807";
     const audio = document.getElementById('myAudio');
     const audioBtn = document.getElementById('audioBtn');
     let isPlaying = false;
 
-    // Auto play muzik bila skrin disentuh
     function playAudioDirect() {
       if (!isPlaying) {
         audio.play().then(() => {
           audioBtn.innerText = "⏸ Pause Lagu";
           isPlaying = true;
-        }).catch(() => {});
+        }).catch(err => console.log("Perlukan sentuhan skrin"));
       }
     }
 
@@ -207,29 +345,71 @@
       }
     }
 
-    function openSecret() {
-      confetti({
-        particleCount: 120,
-        spread: 70,
-        origin: { y: 0.6 }
-      });
-      alert("I love you so much Datin Sri Nursyamimi! ❤️✨");
+    /* Tap Nailong */
+    let tapCount = 0;
+    function tapNailong() {
+      playAudioDirect();
+      if (tapCount < 5) {
+        tapCount++;
+        let percent = (tapCount / 5) * 100;
+        document.getElementById('loveProgress').style.width = percent + '%';
+        document.getElementById('tapCountText').innerText = tapCount + " / 5 Love Collected ❤️";
+
+        confetti({ particleCount: 18, spread: 50, origin: { y: 0.6 } });
+
+        if (tapCount === 5) {
+          const btn = document.getElementById('btnToMessage');
+          btn.disabled = false;
+          btn.innerText = "Buka Mesej Rahsia ✨";
+          document.getElementById('tapCountText').innerText = "Sempurna! Tekan butang di bawah 🥰";
+        }
+      }
     }
 
-    // Hujan Capybara (🦫), Nailong Kuning (🟡) & Hati (❤️)
+    function showSection(id) {
+      document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+    }
+
+    /* Typewriter Message */
+    const fullText = "Sayang, I know kamu penat okey? Dah kalau penat, baby always ada dengan sayang okey. Hug me okey manja 🫠❤️, saya always ada dengan sayang tau. Always. Sayang cari jee baby kat mana mana. Baby always ada. Baby always ada disisi sayang inshaAllah..\n\nSayang strong gurl and good gurl okey 🥹❤️ love you so much strong gurl yang bucuk baby Nursyamimi..\n\nDaripada: Dato' Sri Muhammad Aliff Aiman 🤵🏻‍♂️✨";
+    
+    let typeIndex = 0;
+    function startTypewriter() {
+      if (typeIndex === 0) {
+        typeWriter();
+      }
+    }
+
+    function typeWriter() {
+      if (typeIndex < fullText.length) {
+        document.getElementById("typewriterText").innerText += fullText.charAt(typeIndex);
+        typeIndex++;
+        setTimeout(typeWriter, 35);
+      }
+    }
+
+    function checkPasscode() {
+      const input = document.getElementById('passInput').value;
+      if (input === CORRECT_PASS) {
+        confetti({ particleCount: 150, spread: 80, origin: { y: 0.5 } });
+        showSection('step-gallery');
+      } else {
+        alert("Kod salah sayang! Cuba ingat balik tarikh anniversary kita 😉❤️");
+      }
+    }
+
+    /* Floating Emoji */
     setInterval(() => {
       const emoji = document.createElement('div');
       emoji.classList.add('floating-emoji');
-      const items = ['🦫', '🟡', '❤️', '✨', '💖'];
-      emoji.innerText = items[Math.floor(Math.random() * items.length)];
+      emoji.innerText = ['🦫', '🟡', '❤️', '💖', '✨'][Math.floor(Math.random()*5)];
       emoji.style.left = Math.random() * 90 + 'vw';
       emoji.style.fontSize = (Math.random() * 12 + 18) + 'px';
       emoji.style.animationDuration = Math.random() * 3 + 3 + 's';
       document.body.appendChild(emoji);
-
       setTimeout(() => emoji.remove(), 5000);
-    }, 600);
+    }, 700);
   </script>
-
 </body>
 </html>
