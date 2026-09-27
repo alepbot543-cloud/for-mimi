@@ -26,28 +26,28 @@
     }
 
     body {
-      background: #1a0826;
+      background: radial-gradient(circle at center, #2e083a 0%, #120318 100%);
       min-height: 100vh;
       color: #fff;
       display: flex;
       justify-content: center;
       align-items: center;
       overflow-x: hidden;
-      padding: 10px;
+      padding: 12px;
     }
 
-    /* Universal Floating Container */
+    /* Universal Floating Glass Card with Ultra-Smooth Transitions */
     .app-card {
       width: 100%;
       max-width: 410px;
-      min-height: 640px;
-      background: rgba(255, 255, 255, 0.12);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.25);
-      border-radius: 32px;
+      min-height: 650px;
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(25px);
+      -webkit-backdrop-filter: blur(25px);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 36px;
       padding: 24px 20px;
-      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
+      box-shadow: 0 40px 80px rgba(0, 0, 0, 0.6), inset 0 1px 1px rgba(255, 255, 255, 0.3);
       text-align: center;
       position: relative;
       z-index: 10;
@@ -55,54 +55,57 @@
       flex-direction: column;
       justify-content: space-between;
       overflow: hidden;
+      transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
     }
 
     /* Fixed Music Control Header */
     .audio-header {
-      background: rgba(0, 0, 0, 0.4);
+      background: rgba(0, 0, 0, 0.45);
       border-radius: 50px;
-      padding: 8px 16px;
+      padding: 8px 18px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      border: 1px solid rgba(255, 255, 255, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.15);
       margin-bottom: 12px;
       z-index: 100;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
     }
-    .song-title { font-weight: 600; color: #ff9a9e; font-size: 0.8rem; text-align: left; }
+    .song-title { font-weight: 600; color: #ff9a9e; font-size: 0.82rem; text-align: left; }
     .song-sub { font-size: 0.65rem; color: #e0e0e0; text-align: left; }
     .play-btn {
-      background: linear-gradient(45deg, #ff416c, #ff4b2b);
+      background: linear-gradient(135deg, #ff416c, #ff4b2b);
       border: none; color: white;
-      padding: 6px 14px; border-radius: 20px;
+      padding: 7px 16px; border-radius: 20px;
       cursor: pointer; font-size: 0.75rem; font-weight: 600;
-      box-shadow: 0 4px 10px rgba(255, 65, 108, 0.4);
-      transition: transform 0.2s;
+      box-shadow: 0 4px 15px rgba(255, 65, 108, 0.4);
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
-    .play-btn:active { transform: scale(0.92); }
+    .play-btn:active { transform: scale(0.9); }
 
-    /* Phase Transitions */
+    /* Premium Fluid Phase Transitions */
     .phase {
       display: none;
+      opacity: 0;
+      transform: translateY(18px) scale(0.96);
       flex-direction: column;
       align-items: center;
       justify-content: center;
       flex-grow: 1;
-      animation: fadeIn 0.6s cubic-bezier(0.39, 0.575, 0.565, 1) forwards;
       width: 100%;
+      transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1), transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
-    .phase.active { display: flex; }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(12px) scale(0.98); }
-      to { opacity: 1; transform: translateY(0) scale(1); }
+    .phase.active {
+      display: flex;
+      opacity: 1;
+      transform: translateY(0) scale(1);
     }
 
-    /* FASA 1: LOVE TREE */
+    /* FASA 1: LOVE TREE & PREMIUM TIMER */
     .tree-canvas-container {
       position: relative;
       width: 100%;
-      height: 280px;
+      height: 270px;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -110,10 +113,11 @@
     #treeCanvas {
       width: 100%;
       height: 100%;
+      filter: drop-shadow(0 8px 16px rgba(255,75,108,0.3));
     }
     .start-heart-btn {
-      width: 80px;
-      height: 80px;
+      width: 85px;
+      height: 85px;
       background: linear-gradient(135deg, #ff416c, #ff4b2b);
       border-radius: 50%;
       display: flex;
@@ -121,40 +125,42 @@
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      box-shadow: 0 0 25px rgba(255, 65, 108, 0.7);
-      animation: pulseHeart 1.5s infinite;
+      box-shadow: 0 0 30px rgba(255, 65, 108, 0.8);
+      animation: pulseHeart 1.6s infinite ease-in-out;
       border: 3px solid #fff;
     }
-    .start-heart-btn span { font-size: 2rem; }
-    .start-heart-btn p { font-size: 0.6rem; font-weight: 700; color: #fff; text-transform: uppercase; margin-top: -2px; }
+    .start-heart-btn span { font-size: 2.2rem; }
+    .start-heart-btn p { font-size: 0.62rem; font-weight: 700; color: #fff; text-transform: uppercase; margin-top: -2px; }
 
     @keyframes pulseHeart {
       0% { transform: scale(1); box-shadow: 0 0 15px rgba(255, 65, 108, 0.5); }
-      50% { transform: scale(1.1); box-shadow: 0 0 35px rgba(255, 65, 108, 0.9); }
+      50% { transform: scale(1.08); box-shadow: 0 0 40px rgba(255, 65, 108, 0.9); }
       100% { transform: scale(1); box-shadow: 0 0 15px rgba(255, 65, 108, 0.5); }
     }
 
     .counter-card {
-      background: rgba(0, 0, 0, 0.35);
-      border-radius: 20px;
-      padding: 12px 16px;
+      background: rgba(0, 0, 0, 0.4);
+      border-radius: 24px;
+      padding: 14px 16px;
       width: 100%;
       margin: 10px 0;
-      border: 1px solid rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
     }
-    .counter-title { font-size: 0.75rem; color: #ffccd5; margin-bottom: 6px; font-weight: 500; }
+    .counter-title { font-size: 0.78rem; color: #ffccd5; margin-bottom: 8px; font-weight: 500; letter-spacing: 0.5px; }
     .timer-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 6px;
+      gap: 8px;
     }
     .timer-box {
-      background: rgba(255, 255, 255, 0.1);
-      padding: 6px;
-      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.08);
+      padding: 8px 4px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.08);
     }
-    .timer-val { font-size: 1.1rem; font-weight: 700; color: #ff9a9e; }
-    .timer-lbl { font-size: 0.55rem; color: #ddd; text-transform: uppercase; }
+    .timer-val { font-size: 1.15rem; font-weight: 700; color: #ff9a9e; }
+    .timer-lbl { font-size: 0.58rem; color: #bbb; text-transform: uppercase; margin-top: 2px; }
 
     /* FASA 2: FLOWERS FOR YOU */
     .flower-box {
@@ -168,132 +174,131 @@
     }
     .bouquet-img {
       width: 180px;
-      filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5));
-      animation: floatBouquet 3s ease-in-out infinite;
+      filter: drop-shadow(0 15px 30px rgba(0,0,0,0.6));
+      animation: floatBouquet 3.5s ease-in-out infinite;
     }
     @keyframes floatBouquet {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-12px) rotate(2deg); }
     }
     .envelope-btn {
-      background: #ff758c;
+      background: linear-gradient(135deg, #ff758c, #ff7eb3);
       border: 2px solid #fff;
-      border-radius: 16px;
-      padding: 12px 20px;
-      margin-top: 15px;
+      border-radius: 20px;
+      padding: 14px 24px;
+      margin-top: 20px;
       cursor: pointer;
-      box-shadow: 0 8px 20px rgba(255, 117, 140, 0.5);
-      transition: transform 0.2s;
+      box-shadow: 0 10px 25px rgba(255, 117, 140, 0.5);
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
     }
-    .envelope-btn:active { transform: scale(0.95); }
+    .envelope-btn:active { transform: scale(0.92); }
 
     /* FASA 3: 3D HEART GALAXY */
     #galaxyContainer {
       width: 100%;
       height: 320px;
-      border-radius: 20px;
+      border-radius: 24px;
       overflow: hidden;
       position: relative;
       background: #000;
       border: 1px solid rgba(255,255,255,0.2);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.5);
     }
 
     /* FASA 4: PASSCODE LOCK (SOFT PINK PASTEL) */
     .pink-theme-box {
       background: #fff0f3;
-      border-radius: 28px;
-      padding: 20px 16px;
+      border-radius: 32px;
+      padding: 22px 18px;
       color: #ff4d6d;
       width: 100%;
-      box-shadow: 0 10px 30px rgba(255, 77, 109, 0.2);
+      box-shadow: 0 15px 35px rgba(255, 77, 109, 0.25);
     }
-    .pink-title { font-family: 'Fredoka One', cursive; font-size: 1.2rem; color: #ff4d6d; margin-bottom: 4px; }
-    .pink-sub { font-size: 0.72rem; color: #ff758f; margin-bottom: 12px; }
+    .pink-title { font-family: 'Fredoka One', cursive; font-size: 1.25rem; color: #ff4d6d; margin-bottom: 4px; }
+    .pink-sub { font-size: 0.72rem; color: #ff758f; margin-bottom: 14px; }
     .pass-hearts {
       display: flex;
       justify-content: center;
-      gap: 12px;
-      margin-bottom: 15px;
+      gap: 14px;
+      margin-bottom: 18px;
     }
     .heart-dot {
       width: 18px;
       height: 18px;
       border: 2px solid #ff758f;
       border-radius: 50%;
-      transition: background 0.2s;
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
     .heart-dot.filled {
       background: #ff4d6d;
+      transform: scale(1.15);
+      box-shadow: 0 0 10px rgba(255, 77, 109, 0.6);
     }
     .keypad {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-      width: 85%;
+      gap: 12px;
+      width: 88%;
       margin: 0 auto;
     }
     .key-btn {
       background: #ffffff;
       border: none;
-      border-radius: 16px;
-      padding: 12px;
-      font-size: 1.2rem;
+      border-radius: 18px;
+      padding: 13px;
+      font-size: 1.25rem;
       font-weight: 700;
       color: #ff4d6d;
-      box-shadow: 0 4px 10px rgba(255, 117, 143, 0.15);
+      box-shadow: 0 6px 15px rgba(255, 117, 143, 0.18);
       cursor: pointer;
+      transition: all 0.2s;
     }
-    .key-btn:active { background: #ffe3e8; }
+    .key-btn:active { transform: scale(0.9); background: #ffe3e8; }
 
-    /* FASA 5: CUTE QUIZ & MASCOT */
+    /* FASA 5: QUIZ & MASCOT */
     .quiz-card {
       background: #ffffff;
-      border-radius: 24px;
-      padding: 20px 16px;
+      border-radius: 28px;
+      padding: 22px 18px;
       color: #333;
       width: 100%;
       margin-bottom: 12px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.2);
     }
-    .mascot-gif {
-      width: 100px;
-      height: 100px;
-      object-fit: contain;
-      margin-bottom: 10px;
-    }
-    .quiz-question { font-size: 0.9rem; font-weight: 600; color: #2d3436; margin-bottom: 14px; }
-    .btn-group { display: flex; gap: 10px; justify-content: center; position: relative; height: 50px; }
+    .quiz-question { font-size: 0.92rem; font-weight: 600; color: #2d3436; margin-bottom: 16px; }
+    .btn-group { display: flex; gap: 12px; justify-content: center; position: relative; height: 50px; }
     .quiz-btn {
-      padding: 10px 18px;
-      border-radius: 20px;
+      padding: 12px 20px;
+      border-radius: 24px;
       border: none;
-      font-size: 0.8rem;
+      font-size: 0.82rem;
       font-weight: 600;
       cursor: pointer;
-      transition: all 0.2s ease;
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
-    .btn-yes { background: #ff4d6d; color: white; box-shadow: 0 4px 12px rgba(255,77,109,0.4); }
+    .btn-yes { background: #ff4d6d; color: white; box-shadow: 0 6px 16px rgba(255,77,109,0.4); }
     .btn-no { background: #e0e0e0; color: #666; position: absolute; }
 
     /* NAILONG TAPPER */
     .nailong-avatar {
-      width: 90px;
-      height: 90px;
+      width: 95px;
+      height: 95px;
       border-radius: 50%;
       background: #ffe135;
       border: 3px solid #fff;
-      margin: 10px auto;
+      margin: 12px auto;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 3rem;
+      font-size: 3.2rem;
       cursor: pointer;
-      box-shadow: 0 6px 18px rgba(255, 225, 53, 0.5);
+      box-shadow: 0 8px 22px rgba(255, 225, 53, 0.6);
+      transition: transform 0.15s;
     }
-    .nailong-avatar:active { transform: scale(0.85); }
+    .nailong-avatar:active { transform: scale(0.85) rotate(-6deg); }
 
     /* FASA 6: GALLERY & REPLAY */
     .gallery-grid {
@@ -301,37 +306,42 @@
       grid-template-columns: repeat(2, 1fr);
       gap: 10px;
       width: 100%;
-      margin-top: 10px;
+      margin-top: 12px;
     }
     .gal-item {
       width: 100%;
-      height: 130px;
-      border-radius: 16px;
+      height: 135px;
+      border-radius: 18px;
       overflow: hidden;
       border: 2px solid rgba(255,255,255,0.4);
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+      transition: transform 0.3s;
     }
-    .gal-item.full { grid-column: span 2; height: 180px; }
+    .gal-item:hover { transform: scale(1.02); }
+    .gal-item.full { grid-column: span 2; height: 185px; }
     .gal-item img { width: 100%; height: 100%; object-fit: cover; }
 
     .action-btn-main {
-      background: linear-gradient(45deg, #ff416c, #ff4b2b);
+      background: linear-gradient(135deg, #ff416c, #ff4b2b);
       color: white; border: none;
-      padding: 12px 24px; font-size: 0.85rem;
+      padding: 14px 26px; font-size: 0.88rem;
       font-weight: 600; border-radius: 50px;
-      cursor: pointer; box-shadow: 0 5px 18px rgba(255, 65, 108, 0.4);
-      width: 100%; margin-top: 10px;
+      cursor: pointer; box-shadow: 0 8px 20px rgba(255, 65, 108, 0.4);
+      width: 100%; margin-top: 12px;
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
+    .action-btn-main:active { transform: scale(0.95); }
 
     .msg-content-box {
       background: rgba(255,255,255,0.95);
       color: #2d3436;
-      border-radius: 20px;
-      padding: 16px;
-      font-size: 0.82rem;
-      line-height: 1.6;
+      border-radius: 22px;
+      padding: 18px 16px;
+      font-size: 0.84rem;
+      line-height: 1.7;
       text-align: left;
-      margin: 10px 0;
+      margin: 12px 0;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.25);
     }
 
     /* Floating Background Emojis */
@@ -367,8 +377,8 @@
 
     <!-- ==================== FASA 1: LOVE TREE ==================== -->
     <div id="phase1" class="phase active">
-      <h2 style="font-family: 'Sacramento', cursive; font-size: 2.2rem; color: #ff9a9e;">Gift For Her</h2>
-      <p style="font-size: 0.7rem; color: #ffd1d7; margin-bottom: 10px;">Dato' Sri Aliff ❤️ Datin Sri Nursyamimi</p>
+      <h2 style="font-family: 'Sacramento', cursive; font-size: 2.4rem; color: #ff9a9e;">Gift For Her</h2>
+      <p style="font-size: 0.72rem; color: #ffd1d7; margin-bottom: 12px;">Dato' Sri Aliff ❤️ Datin Sri Nursyamimi</p>
 
       <div class="tree-canvas-container" id="treeContainer">
         <div class="start-heart-btn" id="startTreeBtn" onclick="growTree()">
@@ -381,10 +391,10 @@
       <div class="counter-card" id="counterSection" style="display:none;">
         <div class="counter-title">Our time together...</div>
         <div class="timer-grid">
-          <div class="timer-box"><div class="timer-val" id="tDays">0</div><div class="timer-lbl">Hari</div></div>
-          <div class="timer-box"><div class="timer-val" id="tHours">0</div><div class="timer-lbl">Jam</div></div>
-          <div class="timer-box"><div class="timer-val" id="tMins">0</div><div class="timer-lbl">Minit</div></div>
-          <div class="timer-box"><div class="timer-val" id="tSecs">0</div><div class="timer-lbl">Saat</div></div>
+          <div class="timer-box"><div class="timer-val" id="tDays">436</div><div class="timer-lbl">Hari</div></div>
+          <div class="timer-box"><div class="timer-val" id="tHours">15</div><div class="timer-lbl">Jam</div></div>
+          <div class="timer-box"><div class="timer-val" id="tMins">22</div><div class="timer-lbl">Minit</div></div>
+          <div class="timer-box"><div class="timer-val" id="tSecs">47</div><div class="timer-lbl">Saat</div></div>
         </div>
       </div>
 
@@ -395,10 +405,9 @@
 
     <!-- ==================== FASA 2: FLOWERS FOR YOU ==================== -->
     <div id="phase2" class="phase">
-      <h2 style="font-family: 'Sacramento', cursive; font-size: 2.5rem; color: #d8b4fe;">Flowers For You</h2>
+      <h2 style="font-family: 'Sacramento', cursive; font-size: 2.6rem; color: #d8b4fe;">Flowers For You</h2>
       
       <div class="flower-box">
-        <!-- SVG Bouquet Vector -->
         <svg class="bouquet-img" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M100 180L70 120H130L100 180Z" fill="#8b5cf6"/>
           <path d="M60 70C60 50 80 40 100 60C120 40 140 50 140 70C140 95 100 120 100 120C100 120 60 95 60 70Z" fill="#a855f7"/>
@@ -409,15 +418,15 @@
 
         <button class="envelope-btn" onclick="goToPhase('phase3'); initGalaxy();">
           <span style="font-size:1.4rem;">✉️</span>
-          <span style="font-weight:600; font-size:0.85rem; color:#fff;">Buka Galaksi Cinta 🌌</span>
+          <span style="font-weight:600; font-size:0.88rem; color:#fff;">Buka Galaksi Cinta 🌌</span>
         </button>
       </div>
     </div>
 
     <!-- ==================== FASA 3: 3D HEART GALAXY ==================== -->
     <div id="phase3" class="phase">
-      <h3 style="color:#ff758c; font-size:1.1rem; margin-bottom:8px;">3D Heart Galaxy ✨</h3>
-      <p style="font-size:0.7rem; color:#ccc; margin-bottom:10px;">Pusingan kasih sayang kita di angkasa</p>
+      <h3 style="color:#ff758c; font-size:1.15rem; margin-bottom:8px;">3D Heart Galaxy ✨</h3>
+      <p style="font-size:0.72rem; color:#ccc; margin-bottom:12px;">Pusingan kasih sayang kita di angkasa</p>
 
       <div id="galaxyContainer"></div>
 
@@ -454,7 +463,7 @@
           <button class="key-btn" style="grid-column: span 3;" onclick="pressKey('0')">0</button>
         </div>
 
-        <p style="font-size:0.65rem; color:#ff758f; margin-top:12px;">hint : our date xixi! 💖</p>
+        <p style="font-size:0.68rem; color:#ff758f; margin-top:14px;">hint : our date xixi! 💖</p>
       </div>
     </div>
 
@@ -463,7 +472,7 @@
       
       <!-- SUB-STEP 5A: QUIZ -->
       <div id="quizSub" class="quiz-card">
-        <div style="font-size:3rem; margin-bottom:5px;">🐼</div>
+        <div style="font-size:3.2rem; margin-bottom:6px;">🐼</div>
         <div class="quiz-question">aloo sayang, udah siap belom sama kadonya? 🥺❤️</div>
         <div class="btn-group">
           <button class="quiz-btn btn-yes" onclick="finishQuiz()">soOo excited!->^<</button>
@@ -472,10 +481,10 @@
       </div>
 
       <!-- SUB-STEP 5B: NAILONG TAPPER -->
-      <div id="nailongSub" class="quiz-card" style="display:none; background:rgba(0,0,0,0.2); color:white;">
-        <p style="font-size:0.8rem; color:#ffccd5;">Ketuk Nailong Kuning 5 kali untuk kumpul Love Power! 🟡✨</p>
+      <div id="nailongSub" class="quiz-card" style="display:none; background:rgba(0,0,0,0.35); color:white; border:1px solid rgba(255,255,255,0.15);">
+        <p style="font-size:0.82rem; color:#ffccd5;">Ketuk Nailong Kuning 5 kali untuk kumpul Love Power! 🟡✨</p>
         <div class="nailong-avatar" onclick="tapNailong()">🟡</div>
-        <p id="nailongTxt" style="font-size:0.75rem; margin-top:8px;">0 / 5 Collected</p>
+        <p id="nailongTxt" style="font-size:0.78rem; margin-top:8px;">0 / 5 Collected</p>
         <button class="action-btn-main" id="btnToGallery" disabled style="display:none;" onclick="goToPhase('phase6'); triggerConfetti();">
           Buka Galeri Kenangan 📸
         </button>
@@ -485,8 +494,8 @@
 
     <!-- ==================== FASA 6: GALLERY & REPLAY ==================== -->
     <div id="phase6" class="phase">
-      <h3 style="color:#ff9a9e; font-size:1.2rem;">cieee udah bisa dibuka! ❤️</h3>
-      <p style="font-size:0.7rem; color:#ffd1d7;">Kenangan Indah Dato' Sri Aliff & Datin Sri Nursyamimi</p>
+      <h3 style="color:#ff9a9e; font-size:1.25rem;">cieee udah bisa dibuka! ❤️</h3>
+      <p style="font-size:0.72rem; color:#ffd1d7;">Kenangan Indah Dato' Sri Aliff & Datin Sri Nursyamimi</p>
 
       <div class="msg-content-box">
         Sayang, I know kamu penat okey? Dah kalau penat, baby always ada dengan sayang okey. <br><br>
@@ -503,7 +512,7 @@
         <div class="gal-item full"><img src="https://i.ibb.co/fdSKPZt6/fd38b9acc09e7d9350e49f44549148e6-0.webp" alt="Memory 6"></div>
       </div>
 
-      <button class="action-btn-main" style="margin-top:15px; background: #ab47bc;" onclick="restartApp()">
+      <button class="action-btn-main" style="margin-top:16px; background: #ab47bc;" onclick="restartApp()">
         Replay ♡
       </button>
     </div>
@@ -538,13 +547,32 @@
       }
     }
 
-    /* ================= PHASE ROUTER ================= */
+    /* ================= ULTRA-SMOOTH PHASE ROUTER ================= */
     function goToPhase(phaseId) {
-      document.querySelectorAll('.phase').forEach(p => p.classList.remove('active'));
-      document.getElementById(phaseId).classList.add('active');
+      const activePhase = document.querySelector('.phase.active');
+      if (activePhase) {
+        activePhase.style.opacity = '0';
+        activePhase.style.transform = 'translateY(-15px) scale(0.96)';
+        
+        setTimeout(() => {
+          activePhase.classList.remove('active');
+          const nextPhase = document.getElementById(phaseId);
+          nextPhase.classList.add('active');
+          
+          setTimeout(() => {
+            nextPhase.style.opacity = '1';
+            nextPhase.style.transform = 'translateY(0) scale(1)';
+          }, 50);
+        }, 400);
+      } else {
+        const nextPhase = document.getElementById(phaseId);
+        nextPhase.classList.add('active');
+        nextPhase.style.opacity = '1';
+        nextPhase.style.transform = 'translateY(0) scale(1)';
+      }
     }
 
-    /* ================= FASA 1: TREE & COUNTER ================= */
+    /* ================= FASA 1: TREE & LIVE PRECISE COUNTER ================= */
     function growTree() {
       document.getElementById('startTreeBtn').style.display = 'none';
       const canvas = document.getElementById('treeCanvas');
@@ -554,11 +582,9 @@
       canvas.width = 300;
       canvas.height = 260;
 
-      // Draw Tree Trunk
       ctx.fillStyle = '#8d6e63';
       ctx.fillRect(142, 140, 16, 100);
 
-      // Draw Heart Leaves Cluster
       let leafCount = 0;
       const colors = ['#ff4d6d', '#ff758f', '#ffb3c1', '#ffe66d'];
 
@@ -585,26 +611,26 @@
           clearInterval(timer);
           document.getElementById('counterSection').style.display = 'block';
           document.getElementById('btnToPhase2').style.display = 'block';
-          startAnniversaryTimer();
+          startPreciseTimer();
         }
       }, 30);
     }
 
-    function startAnniversaryTimer() {
-      const startDate = new Date('2024-07-18T00:00:00'); // Based on 1807
-      setInterval(() => {
-        const now = new Date();
-        const diff = now - startDate;
-        
-        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-        const mins = Math.floor((diff / 1000 / 60) % 60);
-        const secs = Math.floor((diff / 1000) % 60);
+    // Pemasa Langsung Bermula Dari Nilai Tepat: 436 Hari, 15 Jam, 22 Minit, 47 Saat
+    let totalSeconds = (436 * 86400) + (15 * 3600) + (22 * 60) + 47;
 
-        document.getElementById('tDays').innerText = days;
-        document.getElementById('tHours').innerText = hours;
-        document.getElementById('tMins').innerText = mins;
-        document.getElementById('tSecs').innerText = secs;
+    function startPreciseTimer() {
+      setInterval(() => {
+        totalSeconds++;
+        const d = Math.floor(totalSeconds / 86400);
+        const h = Math.floor((totalSeconds % 86400) / 3600);
+        const m = Math.floor((totalSeconds % 3600) / 60);
+        const s = totalSeconds % 60;
+
+        document.getElementById('tDays').innerText = d;
+        document.getElementById('tHours').innerText = h;
+        document.getElementById('tMins').innerText = m;
+        document.getElementById('tSecs').innerText = s;
       }, 1000);
     }
 
@@ -621,7 +647,6 @@
       renderer.setSize(container.clientWidth, container.clientHeight);
       container.appendChild(renderer.domElement);
 
-      // Particle Heart
       const particlesCount = 1200;
       const geometry = new THREE.BufferGeometry();
       const positions = new Float32Array(particlesCount * 3);
@@ -637,9 +662,9 @@
         positions[i*3+1] = y * 0.25;
         positions[i*3+2] = z * 0.25;
 
-        colors[i*3] = 1; // R
-        colors[i*3+1] = 0.3 + Math.random()*0.4; // G
-        colors[i*3+2] = 0.6; // B
+        colors[i*3] = 1;
+        colors[i*3+1] = 0.3 + Math.random()*0.4;
+        colors[i*3+2] = 0.6;
       }
 
       geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
@@ -649,7 +674,7 @@
         size: 0.15,
         vertexColors: true,
         transparent: true,
-        opacity: 0.8
+        opacity: 0.85
       });
 
       const heartPoints = new THREE.Points(geometry, material);
@@ -698,7 +723,7 @@
       }
     }
 
-    /* ================= FASA 5: CUTE QUIZ & NAILONG ================= */
+    /* ================= FASA 5: QUIZ & NAILONG ================= */
     function moveNoBtn() {
       const btn = document.getElementById('btnNo');
       const x = (Math.random() - 0.5) * 160;
